@@ -1,0 +1,2 @@
+java.lang.NullPointerException: Cannot invoke "java.lang.String.toString()" because "x" is null
+	at Test.main(Test.java:5)
