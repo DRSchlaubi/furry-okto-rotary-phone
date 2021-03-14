@@ -1,5 +1,5 @@
-rootProject.name = "fopr"
-include("fopr-core")
+rootProject.name = "String"
+include("forp-core", "forp-find")
 
 pluginManagement {
     resolutionStrategy {
@@ -9,3 +9,4 @@ pluginManagement {
         }
     }
 }
+include("forp-test-helper")

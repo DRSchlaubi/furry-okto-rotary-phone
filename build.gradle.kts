@@ -4,7 +4,7 @@ plugins {
     id("org.ajoberstar.git-publish") version "2.1.3"
 }
 
-group = "dev.schlaubi.fopr"
+group = "dev.schlaubi.forp"
 version = "1.0-SNAPSHOT"
 
 allprojects {
@@ -42,11 +42,24 @@ subprojects {
             dokkaSourceSets {
                 configureEach {
                     perPackageOption {
-                        matchingRegex.set("dev.schlaubi.fopr.core.parser") // No ANTLR docs
+                        matchingRegex.set("dev.schlaubi.forp.core.parser") // No ANTLR docs
                         suppress.set(true)
                     }
                 }
             }
+        }
+
+        withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+            kotlinOptions {
+                jvmTarget = "11"
+                useIR = true
+                freeCompilerArgs = freeCompilerArgs +
+                        "-Xopt-in=dev.schlaubi.forp.core.annotation.ForpInternals"
+            }
+        }
+
+        withType<Test> {
+            useJUnitPlatform()
         }
     }
 }
