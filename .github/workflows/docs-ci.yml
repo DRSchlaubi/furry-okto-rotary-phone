@@ -22,4 +22,4 @@ jobs:
           java-version: 15
 
       - name: Publish docs with Gradle
-        run: gradle --stacktrace --info gitPublishPush
+        run: gradle clean && gradle forp-core:generateGrammarSource && gradle --stacktrace --info gitPublishPush
