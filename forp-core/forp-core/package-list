@@ -1,0 +1,7 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+dev.schlaubi.forp.core
+dev.schlaubi.forp.core.annotation
+dev.schlaubi.forp.core.stacktrace
+
