@@ -1,6 +1,6 @@
-# Furry octo rotary phone
+# Furry okto rotary phone
 
-Furry octo rotary phone or FORP for short is a Kotlin library for fetching, finding, parsing and
+Furry okto rotary phone or FORP for short is a Kotlin library for fetching, finding, parsing and
 analyzing JVM exception stacktraces
 
 # Status
@@ -15,9 +15,9 @@ Not done LOL
 
 # Modules
 
-- [core](https://github.com/DRSchlaubi/furry-octo-rotary-phone/tree/main/forp-core) - Stack trace
+- [core](https://github.com/DRSchlaubi/furry-okto-rotary-phone/tree/main/forp-core) - Stack trace
   model and parsing APIs
-- [find](https://github.com/DRSchlaubi/furry-octo-rotary-phone/tree/main/forp-find) - Search for
+- [find](https://github.com/DRSchlaubi/furry-okto-rotary-phone/tree/main/forp-find) - Search for
   multiple stack traces within the same input
 
 # Documentation

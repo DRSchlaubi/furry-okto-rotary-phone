@@ -1,4 +1,4 @@
-rootProject.name = "String"
+rootProject.name = "forp"
 include("forp-core", "forp-find")
 
 pluginManagement {

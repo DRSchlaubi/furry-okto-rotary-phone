@@ -4,7 +4,7 @@ Forp-core is the actual parser. It adds the basic model structure and parsing AP
 
 **Note: ** Core can only parse Strings only containing one exception. If you want to parse multiple
 Exceptions in the same String
-use [forp-find](https://github.com/DRSchlaubi/furry-octo-rotary-phone/tree/main/forp-find)
+use [forp-find](https://github.com/DRSchlaubi/furry-okto-rotary-phone/tree/main/forp-find)
 
 # Contents
 

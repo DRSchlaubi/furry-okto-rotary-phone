@@ -65,7 +65,7 @@ subprojects {
 }
 
 configure<org.ajoberstar.gradle.git.publish.GitPublishExtension> {
-    repoUri.set("https://github.com/DRSchlaubi/furry-octo-rotary-phone.git")
+    repoUri.set("https://github.com/DRSchlaubi/furry-okto-rotary-phone.git")
     branch.set("gh-pages")
 
     contents {
