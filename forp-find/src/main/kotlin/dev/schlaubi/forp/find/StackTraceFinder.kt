@@ -26,7 +26,10 @@ public object StackTraceFinder {
      */
     @JvmStatic
     @JvmOverloads
-    public fun findStackTraces(path: Path, charset: Charset = Charsets.UTF_8): List<RootStackTrace> =
+    public fun findStackTraces(
+        path: Path,
+        charset: Charset = Charsets.UTF_8
+    ): List<RootStackTrace> =
         FileChannel.open(path, StandardOpenOption.READ).use {
             findStackTraces(it, charset)
         }
@@ -72,7 +75,9 @@ public object StackTraceFinder {
         var currentEnd = 0
         var lastStart = 0
         for (start in possibleStackTraces) {
-            val range = start.range
+            // We should only start parsing the actual exception,
+            // therefore we start at the first group
+            val range = start.groups[1]?.range ?: continue
             val currentStart = range.first
             if (currentStart < currentEnd) continue
 
