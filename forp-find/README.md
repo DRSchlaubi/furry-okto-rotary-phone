@@ -1,6 +1,7 @@
 # forp-core
 
-Forp-find is provides an API to search for multiple stack traces within one input source. Unlike core this can find multiple stacktraces within the same input source
+Forp-find is provides an API to search for multiple stack traces within one input source. Unlike
+core this can find multiple stacktraces within the same input source
 
 # Contents
 
@@ -11,11 +12,14 @@ Forp-find is provides an API to search for multiple stack traces within one inpu
 
 # Download
 
-TBD
+Module name: `forp-find`
+
+Repository information: https://github.com/DRSchlaubi/furry-okto-rotary-phone#download
 
 # Docs
 
-Docs can be found here: [fopr.schlau.bi/forp-find/forp-find](https://fopr.schlau.bi/fopr-find/forp-find)
+Docs can be found
+here: [fopr.schlau.bi/forp-find/forp-find](https://fopr.schlau.bi/fopr-find/forp-find)
 
 # Example
 

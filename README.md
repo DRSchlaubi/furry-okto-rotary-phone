@@ -26,6 +26,8 @@ You can find our docs here: [fopr.schlau.bi](https://fopr.schlau.bi)
 
 # Download
 
+### Gradle (Kotlin)
+
 ```kotlin
 repositories {
     maven("https://schlaubi.jfrog.io/artifactory/forp/")
@@ -34,4 +36,73 @@ repositories {
 dependencies {
     implementation("dev.schlaubi.forp:forp-<module>:1.0.0-SNAPSHOT")
 }
+
+// Or MPP:
+
+sourceSets {
+    commonMain {
+        repositories {
+            maven("https://schlaubi.jfrog.io/artifactory/forp/")
+        }
+
+        dependencies {
+            implementation("dev.schlaubi.forp:forp-<module>:1.0.0-SNAPSHOT")
+        }
+    }
+}
+```
+
+### Gradle (Groovy)
+
+```groovy
+repositories {
+    maven {
+        url "https://schlaubi.jfrog.io/artifactory/forp/"
+    }
+}
+
+dependencies {
+    implementation 'dev.schlaubi.forp:forp-<module>:1.0.0-SNAPSHOT'
+}
+
+// Or MPP:
+
+sourceSets {
+    commonMain {
+        repositories {
+            repositories {
+                maven {
+                    url "https://schlaubi.jfrog.io/artifactory/forp/"
+                }
+            }
+
+            dependencies {
+                implementation 'dev.schlaubi.forp:forp-<module>:1.0.0-SNAPSHOT'
+            }
+        }
+    }
+}
+```
+
+# Maven
+
+```xml
+<repositories>
+  <repository>
+    <repository>
+      <id>forp-repo</id>
+      <url>https://schlaubi.jfrog.io/artifactory/forp/</url>
+    </repository>
+  </repository>
+</repositories>
+
+<dependencies>
+  <dependency>
+    <groupId>dev.schlaubi.forp</groupId>
+    <artifactId><!--module--></artifactId>
+    <version>0.7.0-SNAPSHOT</version>
+  </dependency>
+</dependencies>
+
+  <!-- No MPP! See https://discuss.kotlinlang.org/t/fullstack-kotlin-with-maven/16008/2 -->
 ```

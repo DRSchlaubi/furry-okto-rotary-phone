@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\build.gradle.kts">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\forp-core\build.gradle.kts">
           <value>
             <Attribute>

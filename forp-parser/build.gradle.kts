@@ -13,6 +13,8 @@ buildscript {
 
 plugins {
     kotlin("multiplatform")
+    `maven-publish`
+    signing
 }
 
 group = "dev.schlaubi.forp"

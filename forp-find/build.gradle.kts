@@ -1,6 +1,8 @@
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.dokka")
+    `maven-publish`
+    signing
 }
 
 group = "dev.schlaubi.forp"
