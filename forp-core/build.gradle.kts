@@ -5,7 +5,7 @@ plugins {
     signing
 }
 
-group = "dev.schlaubi"
+group = "dev.schlaubi.forp"
 version = rootProject.version
 
 repositories {

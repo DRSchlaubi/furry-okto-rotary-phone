@@ -13,7 +13,7 @@ fun Project.configurePublishing() {
     val configurePublishing: PublishingExtension.() -> Unit = {
         repositories {
             maven {
-                setUrl("https://schlaubi.jfrog.io/artifactory/lavakord")
+                setUrl("https://schlaubi.jfrog.io/artifactory/forp-artifacts")
 
                 credentials {
                     username = System.getenv("BINTRAY_USER")
