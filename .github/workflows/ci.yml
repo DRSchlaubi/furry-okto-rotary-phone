@@ -78,4 +78,4 @@ jobs:
         with:
           java-version: 15
       - name: Publish with Gradle
-        run: ./gradlew publishAllPublicationsToMavenRepository
+        run: ./gradlew forp-parser:generateKotlinCommonGrammarSource publishAllPublicationsToMavenRepository

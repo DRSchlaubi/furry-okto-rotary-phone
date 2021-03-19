@@ -81,27 +81,6 @@ subprojects {
             useJUnitPlatform()
         }
     }
-
-    try {
-
-        signing {
-            val signingKey = findProperty("signingKey")?.toString()
-            val signingPassword = findProperty("signingPassword")?.toString()
-            if (signingKey != null && signingPassword != null) {
-                useInMemoryPgpKeys(
-                    String(Base64.getDecoder().decode(signingKey.toByteArray())),
-                    signingPassword
-                )
-            }
-
-            publishing.publications.withType<MavenPublication> {
-                sign(this)
-            }
-        }
-
-    } catch (ignored: UnknownDomainObjectException) {
-
-    }
 }
 
 configure<org.ajoberstar.gradle.git.publish.GitPublishExtension> {

@@ -23,9 +23,7 @@ fun Project.configurePublishing() {
         }
 
         publications {
-            println("PUB2")
             filterIsInstance<MavenPublication>().forEach { publication ->
-                println("PPUB")
                 publication.pom {
                     name.set(project.name)
                     description.set("Kotlin library which can, fetch, find, parse and analyze JVM exception stacktraces")
