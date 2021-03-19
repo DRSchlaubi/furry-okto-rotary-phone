@@ -46,6 +46,21 @@ subprojects {
                         suppress.set(true)
                     }
                 }
+
+                val map = asMap
+
+                if (map.containsKey("jsMain")) {
+                    named("jsMain") {
+                        displayName.set("JS")
+                    }
+                }
+
+                if (map.containsKey("jvmMain")) {
+                    named("jvmMain") {
+                        jdkVersion.set(11)
+                        displayName.set("JVM")
+                    }
+                }
             }
         }
 

@@ -37,5 +37,5 @@ val stackTrace = StackTraceParser.parse(exception)
 If you want to contribute you have to run this command first
 
 ```bash
-./gradlew forp-core:generateGrammarSource
+./gradlew forp-parser:generateKotlinCommonGrammarSource
 ```

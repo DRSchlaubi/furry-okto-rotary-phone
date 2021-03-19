@@ -7,3 +7,9 @@ val org.gradle.api.NamedDomainObjectContainer<KotlinSourceSet>.jvmMain: NamedDom
 
 val org.gradle.api.NamedDomainObjectContainer<KotlinSourceSet>.jvmTest: NamedDomainObjectProvider<KotlinSourceSet>
     get() = named<KotlinSourceSet>("jvmTest")
+
+val org.gradle.api.NamedDomainObjectContainer<KotlinSourceSet>.jsMain: NamedDomainObjectProvider<KotlinSourceSet>
+    get() = named<KotlinSourceSet>("jsMain")
+
+val org.gradle.api.NamedDomainObjectContainer<KotlinSourceSet>.jsTest: NamedDomainObjectProvider<KotlinSourceSet>
+    get() = named<KotlinSourceSet>("jsTest")

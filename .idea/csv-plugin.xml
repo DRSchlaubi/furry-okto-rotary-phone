@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CsvFileAttributes">
+    <option name="attributeMap">
+      <map>
+        <entry key="C:\Users\micha\.gradle\caches\modules-2\files-2.1\com.strumenta.antlr-kotlin\antlr-kotlin-runtime-metadata\0951069063\4683cc3dc0419c9cae3dc7465182e03717c6a5e\antlr-kotlin-runtime-metadata-0951069063-sources.jar!\commonMain\org\antlr\v4\kotlinruntime\ParserRuleContext.kt">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\forp-core\build.gradle.kts">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\forp-find\build.gradle.kts">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\forp-find\src\jvmMain\kotlin\dev.schlaubi.forp.find.JvmInterop.kt">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

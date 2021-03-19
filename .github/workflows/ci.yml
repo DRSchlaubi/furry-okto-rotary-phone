@@ -51,4 +51,4 @@ jobs:
           # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
 
       - name: Gradle (Testing)
-        run: gradle --stacktrace --info check
+        run: gradle --stacktrace --info jvmTest jsNodeTest

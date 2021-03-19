@@ -1,41 +1,72 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    kotlin("jvm")
+    kotlin("multiplatform")
     id("org.jetbrains.dokka")
-    antlr
 }
 
 group = "dev.schlaubi"
-version = "1.0-SNAPSHOT"
+version = rootProject.version
 
 repositories {
     mavenCentral()
-}
-
-dependencies {
-    antlr("org.antlr", "antlr4", "4.9.2")
-
-    testImplementation(kotlin("test"))
-    testImplementation(kotlin("test-junit5"))
-    testImplementation(project(":forp-test-helper"))
-    testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", "5.7.1")
+    maven("https://jitpack.io")
 }
 
 kotlin {
-    explicitApi()
-}
-
-tasks {
-    withType<KotlinCompile> {
-        kotlinOptions {
-            freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
+    jvm {
+        compilations.all {
+            kotlinOptions {
+                freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
+                useIR = true
+                jvmTarget = "11"
+            }
         }
     }
 
-    generateGrammarSource {
-        outputDirectory =
-            File(project.buildDir, "generated-src/antlr/main/dev/schlaubi/forp/core/parser")
-        arguments = arguments + listOf("-visitor", "-package", "dev.schlaubi.forp.core.parser")
+    js(LEGACY) {
+        nodejs()
+    }
+
+    explicitApi()
+
+    sourceSets {
+        all {
+            repositories {
+                mavenCentral()
+                maven("https://jitpack.io")
+            }
+
+            languageSettings.useExperimentalAnnotation("kotlin.RequiresOptIn")
+            languageSettings.useExperimentalAnnotation("dev.schlaubi.forp.core.annotation.ForpInternals")
+        }
+
+
+        @Suppress("UNUSED_VARIABLE") // The common-main shortcuts yells at you
+        val commonMain by getting {
+            dependencies {
+                api(project(":forp-parser"))
+            }
+        }
+
+        commonTest {
+            dependencies {
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
+                implementation(project(":forp-test-helper"))
+            }
+        }
+
+        jvmTest {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(kotlin("test-junit5"))
+                runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+            }
+        }
+
+        jsTest {
+            dependencies {
+                implementation(kotlin("test-js"))
+            }
+        }
     }
 }

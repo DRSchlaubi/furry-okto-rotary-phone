@@ -11,7 +11,7 @@ Not done LOL
 
 - [Modules](#modules)
 - [Documentation](#documentation)
-- [Download (BOM)](#download-bom)
+- [Download (BOM)](#download)
 
 # Modules
 
@@ -24,6 +24,14 @@ Not done LOL
 
 You can find our docs here: [fopr.schlau.bi](https://fopr.schlau.bi)
 
-# Download (BOM)
+# Download
 
-TBD
+```kotlin
+repositories {
+    maven("https://schlaubi.jfrog.io/artifactory/forp/")
+}
+
+dependencies {
+    implementation("dev.schlaubi.forp:forp-<module>:1.0.0-SNAPSHOT")
+}
+```
