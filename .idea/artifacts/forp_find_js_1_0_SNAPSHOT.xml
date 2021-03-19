@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="forp-find-js-1.0-SNAPSHOT">
+    <output-path>C:\Users\micha\IdeaProjects\fopr\forp-find\build\libs</output-path>
+    <root id="archive" name="forp-find-js-1.0-SNAPSHOT.jar">
+      <element id="module-output" name="forp.forp-find.jsMain" />
+    </root>
+  </artifact>
+</component>

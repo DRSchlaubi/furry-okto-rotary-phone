@@ -1,4 +1,0 @@
-dev.schlaubi.DiedException: An Exception was thrown
-  at Test.main(Test.java:5)
-Caused by: java.lang.NullPointerException: Cannot invoke "java.lang.String.toString()" because "x" is null
-	at Test.main(Test.java:5)

@@ -15,11 +15,14 @@ use [forp-find](https://github.com/DRSchlaubi/furry-okto-rotary-phone/tree/main/
 
 # Download
 
-TBD
+Module name: `forp-core`
+
+Repository information: https://github.com/DRSchlaubi/furry-okto-rotary-phone#download
 
 # Docs
 
-Docs can be found here: [fopr.schlau.bi/forp-core/forp-core](https://fopr.schlau.bi/fopr-core/forp-core)
+Docs can be found
+here: [fopr.schlau.bi/forp-core/forp-core](https://fopr.schlau.bi/fopr-core/forp-core)
 
 # Example
 
@@ -37,5 +40,5 @@ val stackTrace = StackTraceParser.parse(exception)
 If you want to contribute you have to run this command first
 
 ```bash
-./gradlew forp-core:generateGrammarSource
+./gradlew forp-parser:generateKotlinCommonGrammarSource
 ```

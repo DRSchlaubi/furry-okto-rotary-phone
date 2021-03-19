@@ -1,41 +1,109 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    kotlin("jvm")
+    kotlin("multiplatform")
     id("org.jetbrains.dokka")
-    antlr
+    `maven-publish`
+    signing
 }
 
-group = "dev.schlaubi"
-version = "1.0-SNAPSHOT"
+group = "dev.schlaubi.forp"
+version = rootProject.version
 
 repositories {
     mavenCentral()
+    maven("https://jitpack.io")
 }
 
-dependencies {
-    antlr("org.antlr", "antlr4", "4.9.2")
+publishing {
+    publications {
+        filterIsInstance<MavenPublication>().forEach { publication ->
+            publication.pom {
+                name.set(project.name)
+                description.set("Kotlin library which can, fetch, find, parse and analyze JVM exception stacktraces")
+                url.set("https://github.com/DRSchlaubi/furry-okto-rotary-phone")
 
-    testImplementation(kotlin("test"))
-    testImplementation(kotlin("test-junit5"))
-    testImplementation(project(":forp-test-helper"))
-    testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", "5.7.1")
+                licenses {
+                    license {
+                        name.set("Apache-2.0 License")
+                        url.set("https://github.com/DRSchlaubi/furry-okto-rotary-phone/blob/main/LICENSE")
+                    }
+                }
+
+                developers {
+                    developer {
+                        name.set("Michael Rittmeister")
+                        email.set("mail@schlaubi.me")
+                        organizationUrl.set("https://michael.rittmeister.in")
+                    }
+                }
+
+                scm {
+                    connection.set("scm:git:https://github.com/DRSchlaubi/furry-okto-rotary-phone.git")
+                    developerConnection.set("scm:git:https://github.com/DRSchlaubi/furry-okto-rotary-phone.git")
+                    url.set("https://github.com/DRSchlaubi/furry-okto-rotary-phone")
+                }
+            }
+        }
+    }
 }
 
 kotlin {
-    explicitApi()
-}
-
-tasks {
-    withType<KotlinCompile> {
-        kotlinOptions {
-            freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
+    jvm {
+        compilations.all {
+            kotlinOptions {
+                freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
+                useIR = true
+                jvmTarget = "11"
+            }
         }
     }
 
-    generateGrammarSource {
-        outputDirectory =
-            File(project.buildDir, "generated-src/antlr/main/dev/schlaubi/forp/core/parser")
-        arguments = arguments + listOf("-visitor", "-package", "dev.schlaubi.forp.core.parser")
+    js(LEGACY) {
+        nodejs()
+    }
+
+    explicitApi()
+
+    sourceSets {
+        all {
+            repositories {
+                mavenCentral()
+                maven("https://jitpack.io")
+            }
+
+            languageSettings.useExperimentalAnnotation("kotlin.RequiresOptIn")
+            languageSettings.useExperimentalAnnotation("dev.schlaubi.forp.core.annotation.ForpInternals")
+        }
+
+
+        @Suppress("UNUSED_VARIABLE") // The common-main shortcuts yells at you
+        val commonMain by getting {
+            dependencies {
+                api(project(":forp-parser"))
+            }
+        }
+
+        commonTest {
+            dependencies {
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
+                implementation(project(":forp-test-helper"))
+            }
+        }
+
+        jvmTest {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(kotlin("test-junit5"))
+                runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+            }
+        }
+
+        jsTest {
+            dependencies {
+                implementation(kotlin("test-js"))
+            }
+        }
     }
 }
+
+configurePublishing()

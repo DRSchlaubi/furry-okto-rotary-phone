@@ -6,6 +6,11 @@
       <module name="fopr.fopr-core.commonTest" target="15" />
       <module name="fopr.fopr-core.jvmMain" target="15" />
       <module name="fopr.fopr-core.jvmTest" target="15" />
+      <module name="forp.examples.commonMain" target="11" />
+      <module name="forp.examples.commonTest" target="11" />
+      <module name="forp.examples.jvmMain" target="11" />
+      <module name="forp.examples.jvmTest" target="11" />
+      <module name="forp.forp-core.commonAntlr" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
