@@ -13,6 +13,39 @@ repositories {
     maven("https://jitpack.io")
 }
 
+publishing {
+    publications {
+        filterIsInstance<MavenPublication>().forEach { publication ->
+            publication.pom {
+                name.set(project.name)
+                description.set("Kotlin library which can, fetch, find, parse and analyze JVM exception stacktraces")
+                url.set("https://github.com/DRSchlaubi/furry-okto-rotary-phone")
+
+                licenses {
+                    license {
+                        name.set("Apache-2.0 License")
+                        url.set("https://github.com/DRSchlaubi/furry-okto-rotary-phone/blob/main/LICENSE")
+                    }
+                }
+
+                developers {
+                    developer {
+                        name.set("Michael Rittmeister")
+                        email.set("mail@schlaubi.me")
+                        organizationUrl.set("https://michael.rittmeister.in")
+                    }
+                }
+
+                scm {
+                    connection.set("scm:git:https://github.com/DRSchlaubi/furry-okto-rotary-phone.git")
+                    developerConnection.set("scm:git:https://github.com/DRSchlaubi/furry-okto-rotary-phone.git")
+                    url.set("https://github.com/DRSchlaubi/furry-okto-rotary-phone")
+                }
+            }
+        }
+    }
+}
+
 kotlin {
     jvm {
         compilations.all {
@@ -72,3 +105,5 @@ kotlin {
         }
     }
 }
+
+configurePublishing()

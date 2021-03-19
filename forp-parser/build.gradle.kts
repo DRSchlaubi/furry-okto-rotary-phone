@@ -85,3 +85,5 @@ tasks {
         dependsOn(generateGrammarSource)
     }
 }
+
+configurePublishing()

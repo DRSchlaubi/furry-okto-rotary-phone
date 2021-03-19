@@ -44,7 +44,7 @@ kotlin {
                 api(project(":forp-core"))
             }
         }
-        
+
         commonTest {
             dependencies {
                 implementation(kotlin("test-common"))
@@ -68,3 +68,5 @@ kotlin {
         }
     }
 }
+
+configurePublishing()
