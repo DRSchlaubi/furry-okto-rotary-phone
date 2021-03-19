@@ -1,5 +1,3 @@
-import java.util.*
-
 plugins {
     kotlin("multiplatform") version "1.4.31" apply false
     id("org.jetbrains.dokka") version "1.4.20"
@@ -26,8 +24,8 @@ tasks {
     val docs = task<Copy>("createDocsIndex") {
         dependsOn(dokkaHtmlMultiModule)
         val outputDirectory = dokkaHtmlMultiModule.get().outputDirectory.get()
-        from(outputDirectory)
-        include("-modules.html")
+        from(outputDirectory, rootProject.projectDir)
+        include("-modules.html", "CNAME")
         into(outputDirectory)
 
         rename("-modules.html", "index.html")
