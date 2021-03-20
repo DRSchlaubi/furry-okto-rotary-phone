@@ -11,10 +11,10 @@ public object StackTraceFinder {
     /**
      * Regex used to find the start of a stack trace.
      */
-    // https://regex101.com/r/VK4ssu/1
+    // https://regex101.com/r/VK4ssu/3
     @JvmField
     public val STACK_TRACE_START: Regex =
-        "(^(?:Exception in thread \".*\")?\\s*?)(\\S+?(?<=Exception|Error:))"
+        "(^(?:Exception in thread \".*\")?\\s*?)(.+?(?<=Exception|Error:))"
             .toRegex(RegexOption.MULTILINE)
 
     /**

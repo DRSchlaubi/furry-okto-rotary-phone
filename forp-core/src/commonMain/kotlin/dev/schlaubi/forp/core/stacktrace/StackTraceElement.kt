@@ -15,6 +15,9 @@ public interface StackTraceElement : ParsedElement {
     override val context: StackTraceLineContext
 }
 
+public data class InvalidStackTraceElement(@ForpInternals override val context: StackTraceLineContext) :
+    StackTraceElement
+
 public data class DefaultStackTraceElement(
     @ForpInternals override val context: StackTraceLineContext,
     public val method: QualifiedMethod,
@@ -31,6 +34,9 @@ public data class DefaultStackTraceElement(
         Source
 
     public data class UnknownSource(@ForpInternals override val context: MethodFileDefinitionContext) :
+        Source
+
+    public data class InvalidSource(@ForpInternals override val context: MethodFileDefinitionContext) :
         Source
 
     public data class FileSource(

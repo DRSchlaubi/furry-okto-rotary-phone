@@ -17,10 +17,45 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\examples\src\main\java\FetcherExample.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\forp-core\build.gradle.kts">
           <value>
             <Attribute>
               <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\forp-fetch\README.md">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\forp-fetch\build.gradle.kts">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\forp-fetch\src\commonMain\kotlin\dev.schlaubi.forp.fetch\processor\BinaryFileProcessor.kt">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\forp-fetch\src\commonMain\kotlin\dev.schlaubi.forp.fetch\test.kt">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
             </Attribute>
           </value>
         </entry>
@@ -32,6 +67,13 @@
           </value>
         </entry>
         <entry key="\forp-find\src\jvmMain\kotlin\dev.schlaubi.forp.find.JvmInterop.kt">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\forp-parser\src\commonAntlr\antlr\StackTrace.g4">
           <value>
             <Attribute>
               <option name="separator" value=":" />

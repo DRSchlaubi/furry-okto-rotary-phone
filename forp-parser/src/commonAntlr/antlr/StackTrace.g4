@@ -52,7 +52,7 @@ methodName: identifier;
 className: JavaWord;
 
 // Workaround so ANTLR doesn't try to recognize file endings where there are no file endings
-identifier: (JavaCharacter | JavaWord | TheWordJava | TheWordJar);
+identifier: (JavaCharacter | JavaWord | TheWordJava | TheWordJar | Number)+;
 
 message: COLON whiteSpacedString?;
 
@@ -118,7 +118,7 @@ QUESTION_MARK: '?';
 
 LAMBDA: 'lambda';
 
-WS: (' ' | '\r' | '\t' | '\u000C' | '\n') -> skip;
+WS: (' ' | '\r' | '\t' | '\u000C' | '\n' | 'こ') -> skip;
 
 
 TheWordJava: 'java';

@@ -2,7 +2,7 @@ import dev.schlaubi.forp.core.stacktrace.RootStackTrace
 import kotlin.js.JsName
 import kotlin.test.Test
 
-class FinderTest {
+class  FinderTest {
 
     @Test
     @JsName("findOneSimpleStackTrace")

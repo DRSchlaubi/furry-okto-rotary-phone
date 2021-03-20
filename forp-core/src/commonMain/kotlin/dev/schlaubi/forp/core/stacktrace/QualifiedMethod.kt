@@ -29,6 +29,14 @@ public interface QualifiedMethod : ParsedElement {
 }
 
 /**
+ * Representation of an wrongly formatted method.
+ */
+public class InvalidQualifiedMethod(
+    @ForpInternals override val context: QualifiedMethodContext,
+    override val `class`: QualifiedClass
+) : QualifiedMethod
+
+/**
  * Implementation of [QualifiedMethod] that represents an actual method call.
  * @property methodName the name of the method call
  */

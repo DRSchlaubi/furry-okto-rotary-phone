@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="forp-fetch-jvm-1.0-SNAPSHOT">
+    <output-path>C:\Users\micha\IdeaProjects\fopr\forp-fetch\build\libs</output-path>
+    <root id="archive" name="forp-fetch-jvm-1.0-SNAPSHOT.jar">
+      <element id="module-output" name="forp.forp-fetch.jvmMain" />
+    </root>
+  </artifact>
+</component>

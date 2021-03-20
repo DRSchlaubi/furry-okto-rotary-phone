@@ -19,6 +19,8 @@ Not done LOL
   model and parsing APIs
 - [find](https://github.com/DRSchlaubi/furry-okto-rotary-phone/tree/main/forp-find) - Search for
   multiple stack traces within the same input
+- [fetch](https://github.com/DRSchlaubi/furry-okto-rotary-phone/tree/main/forp-fetch) - Search for
+  stacktraces in hastebin links, images and files
 
 # Documentation
 
@@ -87,6 +89,7 @@ sourceSets {
 # Maven
 
 ```xml
+
 <repositories>
   <repository>
     <repository>
@@ -97,11 +100,11 @@ sourceSets {
 </repositories>
 
 <dependencies>
-  <dependency>
-    <groupId>dev.schlaubi.forp</groupId>
-    <artifactId><!--module--></artifactId>
-    <version>0.7.0-SNAPSHOT</version>
-  </dependency>
+<dependency>
+  <groupId>dev.schlaubi.forp</groupId>
+  <artifactId><!--module--></artifactId>
+  <version>0.7.0-SNAPSHOT</version>
+</dependency>
 </dependencies>
 
   <!-- No MPP! See https://discuss.kotlinlang.org/t/fullstack-kotlin-with-maven/16008/2 -->

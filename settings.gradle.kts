@@ -15,4 +15,5 @@ pluginManagement {
         }
     }
 }
-
+include("forp-fetch")
+include("forp-bom")

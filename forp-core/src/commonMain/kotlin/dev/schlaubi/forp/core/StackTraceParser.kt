@@ -101,12 +101,12 @@ private fun LowLevelParser.StackTraceLineContext.toAPI(): StackTraceElement {
     return when {
         atLine != null -> toElement(atLine)
         ellipsis != null -> toEllipsis(ellipsis)
-        else -> error("Unexpected parsing error")
+        else -> InvalidStackTraceElement(this)
     }
 }
 
 private fun LowLevelParser.MethodFileDefinitionContext.toAPI(): DefaultStackTraceElement.Source {
-    val file = findClassFile().nn()
+    val file = findClassFile()
     fun toSource(sourceFile: LowLevelParser.SourceFileContext): DefaultStackTraceElement.Source {
         val fileName = sourceFile.findSourceFileName().nn().text
         val line = sourceFile.findLineNumber().nn().text.toInt()
@@ -120,13 +120,13 @@ private fun LowLevelParser.MethodFileDefinitionContext.toAPI(): DefaultStackTrac
     fun toUnknown(): DefaultStackTraceElement.Source =
         DefaultStackTraceElement.UnknownSource(this)
 
-    val sourceFile = file.findSourceFile()
+    val sourceFile = file?.findSourceFile()
 
     return when {
         sourceFile != null -> toSource(sourceFile)
-        file.NATIVE_METHOD() != null -> toNative()
-        file.UNKNOWN_SOURCE() != null -> toUnknown()
-        else -> error("Unexpected parsing error")
+        file?.NATIVE_METHOD() != null -> toNative()
+        file?.UNKNOWN_SOURCE() != null -> toUnknown()
+        else -> DefaultStackTraceElement.InvalidSource(this)
     }
 }
 
@@ -154,13 +154,13 @@ private fun LowLevelParser.QualifiedMethodContext.toAPI(): QualifiedMethod {
     }
 
     val methodName = findMethodName()
-    val lambda by lazy { findLambda() }
+    val lambda = findLambda()
 
     return when {
         methodName != null -> toMethod(methodName)
         findConstructorDef() != null -> toConstructor()
-        lambda != null -> toLambda(lambda!!)
-        else -> error("Unexpected parsing error")
+        lambda != null -> toLambda(lambda)
+        else -> InvalidQualifiedMethod(this, clazz)
     }
 }
 
