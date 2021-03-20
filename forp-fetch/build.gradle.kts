@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization") version "1.4.31"
+    id("org.jetbrains.dokka")
 }
 
 group = "dev.schlaubi.forp"
@@ -71,3 +72,5 @@ kotlin {
         }
     }
 }
+
+configurePublishing()
