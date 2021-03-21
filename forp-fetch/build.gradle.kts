@@ -4,6 +4,8 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
+apply(from = "../publishing.gradle.kts")
+
 group = "dev.schlaubi.forp"
 version = "1.0-SNAPSHOT"
 
@@ -59,7 +61,7 @@ kotlin {
 
             dependencies {
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.4.3")
-                api(project.dependencies.platform("com.google.cloud:libraries-bom:19.2.1"))
+                implementation(project.dependencies.platform("com.google.cloud:libraries-bom:19.2.1"))
                 implementation("com.google.cloud:google-cloud-vision")
                 implementation("io.ktor:ktor-client-okhttp")
             }
@@ -72,5 +74,3 @@ kotlin {
         }
     }
 }
-
-configurePublishing()

@@ -13,9 +13,9 @@ buildscript {
 
 plugins {
     kotlin("multiplatform")
-    `maven-publish`
-    signing
 }
+
+apply(from = "../publishing.gradle.kts")
 
 group = "dev.schlaubi.forp"
 version = rootProject.version
@@ -85,5 +85,3 @@ tasks {
         dependsOn(generateGrammarSource)
     }
 }
-
-configurePublishing()

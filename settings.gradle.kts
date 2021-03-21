@@ -5,6 +5,8 @@ include("forp-find")
 include("forp-test-helper")
 include("forp-parser")
 include("examples")
+include("forp-fetch")
+include("forp-bom")
 
 pluginManagement {
     resolutionStrategy {
@@ -15,5 +17,3 @@ pluginManagement {
         }
     }
 }
-include("forp-fetch")
-include("forp-bom")

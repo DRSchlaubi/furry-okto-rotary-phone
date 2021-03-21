@@ -1,9 +1,9 @@
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.dokka")
-    `maven-publish`
-    signing
 }
+
+apply(from = "../publishing.gradle.kts")
 
 group = "dev.schlaubi.forp"
 version = rootProject.version
@@ -68,5 +68,3 @@ kotlin {
         }
     }
 }
-
-configurePublishing()
