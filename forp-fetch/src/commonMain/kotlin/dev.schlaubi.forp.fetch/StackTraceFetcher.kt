@@ -1,8 +1,10 @@
 package dev.schlaubi.forp.fetch
 
-import dev.schlaubi.forp.core.stacktrace.RootStackTrace
+import dev.schlaubi.forp.core.stacktrace.ParsedRootStackTrace
+import dev.schlaubi.forp.fetch.StackTraceFetcher.Companion.newBuilder
 import dev.schlaubi.forp.fetch.input.Input
 import dev.schlaubi.forp.fetch.processor.InputProcessor
+import dev.schlaubi.forp.fetch.processor.Result
 import dev.schlaubi.forp.fetch.utils.asyncMap
 import dev.schlaubi.forp.find.StackTraceFinder
 import io.ktor.client.*
@@ -22,24 +24,28 @@ public class StackTraceFetcher internal constructor(
     /**
      * Fetches all [inputs] in parallel.
      */
-    public suspend fun fetch(vararg inputs: Input): List<RootStackTrace> =
+    public suspend fun fetch(vararg inputs: Input): List<Result> =
         fetch(inputs.asIterable())
 
     /**
      * Fetches all [inputs] in parallel.
      */
-    public suspend fun fetch(inputs: Iterable<Input>): List<RootStackTrace> =
+    public suspend fun fetch(inputs: Iterable<Input>): List<Result> =
         inputs.asyncMap(::fetch).flatten()
 
     /**
-     * Fetches the [input] by searching for [RootStackTrace] or references to them.
+     * Fetches the [input] by searching for [ParsedRootStackTrace] or references to them.
+     *
+     * @see Result
      */
-    public suspend fun fetch(input: Input): List<RootStackTrace> {
+    public suspend fun fetch(input: Input): List<Result> {
         val inputs = process(input)
 
-        return inputs.map {
-            StackTraceFinder.findStackTraces(it)
-        }.flatten()
+        return inputs.flatMap { possibleStackTrace ->
+            val found = StackTraceFinder.findStackTraces(possibleStackTrace)
+                .map { Result(it, possibleStackTrace) }
+            if (found.isEmpty()) listOf(Result(null, possibleStackTrace)) else found
+        }
     }
 
     /**

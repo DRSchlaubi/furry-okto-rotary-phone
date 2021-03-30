@@ -20,3 +20,8 @@ public interface ParsedElement {
     public val text: String
         get() = context.text
 }
+
+/**
+ * Parsed element that wasn't parsed properly because of errors in it's syntax
+ */
+public interface InvalidParsedElement : ParsedElement

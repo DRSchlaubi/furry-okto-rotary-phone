@@ -1,5 +1,5 @@
 import com.google.cloud.vision.v1.ImageAnnotatorClient;
-import dev.schlaubi.forp.core.stacktrace.RootStackTrace;
+import dev.schlaubi.forp.core.stacktrace.ParsedRootStackTrace;
 import dev.schlaubi.forp.fetch.JavaStackTraceFetcher;
 import dev.schlaubi.forp.fetch.StackTraceFetcher;
 import dev.schlaubi.forp.fetch.input.FileInput.FileType;
@@ -52,7 +52,7 @@ public class FetcherExample {
   private static void fromString(@NotNull JavaStackTraceFetcher fetcher) {
     var input = """
         java.lang.NullPointerException: Cannot invoke "java.lang.String.toString()" because "x" is null
-          at Test.main(Test.java:5)
+          at ClassFinderTest.main(ClassFinderTest.java:5)
                """;
 
     var stackTraces = fetcher.fetch(Input.fromPlainString(input));
@@ -64,7 +64,7 @@ public class FetcherExample {
     var input = ClassLoader.getSystemResourceAsStream("trace_2.txt");
 
     assert input != null;
-    List<RootStackTrace> stackTraces = fetcher
+    List<ParsedRootStackTrace> stackTraces = fetcher
         .fetch(Inputs.fromInputStream(input, FileType.PLAIN_TEXT));
     System.out.println(stackTraces);
   }

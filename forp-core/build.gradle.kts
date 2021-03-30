@@ -47,6 +47,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(project(":forp-parser"))
+                api(project(":forp-parser-api"))
             }
         }
 

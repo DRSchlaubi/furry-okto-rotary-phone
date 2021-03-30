@@ -1,6 +1,6 @@
-import dev.schlaubi.forp.core.stacktrace.DefaultQualifiedMethod
-import dev.schlaubi.forp.core.stacktrace.DefaultStackTraceElement
-import dev.schlaubi.forp.core.stacktrace.EllipsisStackTraceElement
+import dev.schlaubi.forp.core.stacktrace.ParsedDefaultQualifiedMethod
+import dev.schlaubi.forp.core.stacktrace.ParsedDefaultStackTraceElement
+import dev.schlaubi.forp.core.stacktrace.ParsedEllipsisStackTraceElement
 import kotlin.js.JsName
 import kotlin.test.Test
 
@@ -25,7 +25,7 @@ class ParserTest {
 
             message shouldBe """de.near.trollplugin.Troll"""
 
-            val last = elements.last() as EllipsisStackTraceElement
+            val last = elements.last() as ParsedEllipsisStackTraceElement
             last {
                 skipped shouldBe 7
             }
@@ -44,18 +44,18 @@ class ParserTest {
 
         val firstElement = elements.first()
         firstElement {
-            require(this is DefaultStackTraceElement)
+            require(this is ParsedDefaultStackTraceElement)
             method {
                 clazz {
                     className shouldBe "Test"
                 }
 
-                require(this is DefaultQualifiedMethod)
+                require(this is ParsedDefaultQualifiedMethod)
                 methodName shouldBe "main"
             }
 
             source {
-                require(this is DefaultStackTraceElement.FileSource)
+                require(this is ParsedDefaultStackTraceElement.ParsedFileSource)
                 fileName shouldBe "Test.java"
                 lineNumber shouldBe 5
             }
@@ -74,18 +74,18 @@ class ParserTest {
 
         val firstElement = elements.first()
         firstElement {
-            require(this is DefaultStackTraceElement)
+            require(this is ParsedDefaultStackTraceElement)
             method {
                 clazz {
                     className shouldBe "Test"
                 }
 
-                require(this is DefaultQualifiedMethod)
+                require(this is ParsedDefaultQualifiedMethod)
                 methodName shouldBe "main"
             }
 
             source {
-                require(this is DefaultStackTraceElement.FileSource)
+                require(this is ParsedDefaultStackTraceElement.ParsedFileSource)
                 fileName shouldBe "Test.java"
                 lineNumber shouldBe 5
             }
@@ -102,18 +102,18 @@ class ParserTest {
 
             val firstChildElement = elements.first()
             firstChildElement {
-                require(this is DefaultStackTraceElement)
+                require(this is ParsedDefaultStackTraceElement)
                 method {
                     clazz {
                         className shouldBe "Test"
                     }
 
-                    require(this is DefaultQualifiedMethod)
+                    require(this is ParsedDefaultQualifiedMethod)
                     methodName shouldBe "main"
                 }
 
                 source {
-                    require(this is DefaultStackTraceElement.FileSource)
+                    require(this is ParsedDefaultStackTraceElement.ParsedFileSource)
                     fileName shouldBe "Test.java"
                     lineNumber shouldBe 5
                 }

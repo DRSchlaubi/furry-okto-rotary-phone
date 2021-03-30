@@ -1,7 +1,7 @@
 package dev.schlaubi.forp.find
 
 import dev.schlaubi.forp.core.StackTraceParser
-import dev.schlaubi.forp.core.stacktrace.RootStackTrace
+import dev.schlaubi.forp.core.stacktrace.ParsedRootStackTrace
 import dev.schlaubi.forp.find.internal.findRange
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
@@ -18,13 +18,13 @@ public object StackTraceFinder {
             .toRegex(RegexOption.MULTILINE)
 
     /**
-     * Searches for [stack traces][RootStackTrace] in [input].
+     * Searches for [stack traces][ParsedRootStackTrace] in [input].
      */
     @JvmStatic
-    public fun findStackTraces(input: String): List<RootStackTrace> {
+    public fun findStackTraces(input: CharSequence): List<ParsedRootStackTrace> {
         val possibleStackTraces = STACK_TRACE_START.findAll(input).toList()
 
-        val stackTraces = ArrayList<RootStackTrace>(possibleStackTraces.size)
+        val stackTraces = ArrayList<ParsedRootStackTrace>(possibleStackTraces.size)
 
         var currentInput = input
         var currentEnd = 0

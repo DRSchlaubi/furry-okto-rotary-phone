@@ -14,7 +14,7 @@ public class FinderExample {
   private static void fromString() {
     var input = """
         java.lang.NullPointerException: Cannot invoke "java.lang.String.toString()" because "x" is null
-          at Test.main(Test.java:5)
+          at ClassFinderTest.main(ClassFinderTest.java:5)
                """;
 
     var stackTrace = StackTraceFinder.findStackTraces(input);

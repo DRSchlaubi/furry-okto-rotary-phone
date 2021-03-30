@@ -1,3 +1,4 @@
+// Modified from: https://github.com/antlr/grammars-v4/blob/master/stacktrace/StackTrace.g4
 grammar StackTrace;
 
 // Root rule parsing the exception message

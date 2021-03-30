@@ -109,3 +109,14 @@ sourceSets {
 
   <!-- No MPP! See https://discuss.kotlinlang.org/t/fullstack-kotlin-with-maven/16008/2 -->
 ```
+
+# Related Projects
+
+This project is inspired by
+
+- The [Pterodactyl](https://github.com/pterodactyl) Discord bot has a simmilar feature trying to
+  trouble shoot common issues with pteroo
+
+- [DevCord Autohelp](https://github.com/devcordde/DevcordBot/tree/develop/src/main/kotlin/com/github/devcordde/devcordbot/core/autohelp)
+  \- The Discord server `DevCord` has a similar system to this project which was my first attempt at
+  doing this

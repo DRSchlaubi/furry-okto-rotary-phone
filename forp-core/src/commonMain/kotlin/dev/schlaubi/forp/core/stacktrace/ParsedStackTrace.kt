@@ -3,6 +3,9 @@ package dev.schlaubi.forp.core.stacktrace
 import dev.schlaubi.forp.core.ParsedElement
 import dev.schlaubi.forp.core.annotation.ForpInternals
 import dev.schlaubi.forp.core.parser.StackTraceParser
+import dev.schlaubi.forp.parser.stacktrace.CausedStackTrace
+import dev.schlaubi.forp.parser.stacktrace.RootStackTrace
+import dev.schlaubi.forp.parser.stacktrace.StackTrace
 import kotlin.jvm.JvmSynthetic
 
 /**
@@ -12,19 +15,19 @@ import kotlin.jvm.JvmSynthetic
 public typealias StackTraceContext = StackTraceParser.StackTraceContext
 
 /**
- * Implementation of [StackTrace] which delegates to a reference.
- * Normally used by [CausedStackTrace.parent]
+ * Implementation of [ParsedStackTrace] which delegates to a reference.
+ * Normally used by [ParsedCausedStackTrace.parent]
  *
- * @see StackTrace
+ * @see ParsedStackTrace
  */
-public class StackTracePointer : StackTrace {
-    private lateinit var reference: StackTrace
+public class StackTracePointer : ParsedStackTrace {
+    private lateinit var reference: ParsedStackTrace
 
     /**
-     * Converts this pointer to a [StackTrace].
+     * Converts this pointer to a [ParsedStackTrace].
      * @throws IllegalStateException if the reference has not been injected yet
      */
-    public fun toStackTrace(): StackTrace = accessReference()
+    public fun toStackTrace(): ParsedStackTrace = accessReference()
 
     /**
      * @throws IllegalStateException if the reference has not been injected yet
@@ -36,7 +39,7 @@ public class StackTracePointer : StackTrace {
     /**
      * @throws IllegalStateException if the reference has not been injected yet
      */
-    override val exception: QualifiedClass
+    override val exception: ParsedQualifiedClass
         get() = accessReference().exception
 
     /**
@@ -54,18 +57,18 @@ public class StackTracePointer : StackTrace {
     /**
      * @throws IllegalStateException if the reference has not been injected yet
      */
-    override val elements: List<StackTraceElement>
+    override val elements: List<ParsedStackTraceElement>
         get() = accessReference().elements
 
     /**
      * This is an internal method and not supposed to be called.
      */
     @JvmSynthetic
-    internal fun injectReference(reference: StackTrace) {
+    internal fun injectReference(reference: ParsedStackTrace) {
         this.reference = reference
     }
 
-    private fun accessReference(): StackTrace {
+    private fun accessReference(): ParsedStackTrace {
         require(this::reference.isInitialized) { "Pointer hasn't received reference yet" }
         return reference
     }
@@ -74,43 +77,43 @@ public class StackTracePointer : StackTrace {
 /**
  * Interface representing a stack trace.
  *
- * @property exception the [QualifiedClass] which is the Throwable that got thrown
+ * @property exception the [ParsedQualifiedClass] which is the Throwable that got thrown
  * @property message the message of the Exception or `null` if there was none
- * @property elements a [List] of [StackTraceElement] of this stack trace
+ * @property elements a [List] of [ParsedStackTraceElement] of this stack trace
  */
-public interface StackTrace : ParsedElement {
+public interface ParsedStackTrace : StackTrace, ParsedElement {
     @ForpInternals
     override val context: StackTraceContext
-    public val exception: QualifiedClass
-    public val message: String?
-    public val elements: List<StackTraceElement>
+    public override val exception: ParsedQualifiedClass
+    public override val message: String?
+    public override val elements: List<ParsedStackTraceElement>
 }
 
 /**
  * Representation of a child stack trace.
  *
- * @property parent the [StackTrace] which was caused by this exception
- * @see StackTrace
+ * @property parent the [ParsedStackTrace] which was caused by this exception
+ * @see ParsedStackTrace
  */
-public data class CausedStackTrace(
+public data class ParsedCausedStackTrace(
     override val text: String,
     @ForpInternals override val context: StackTraceContext,
-    override val exception: QualifiedClass,
+    override val exception: ParsedQualifiedClass,
     override val message: String?,
-    override val elements: List<StackTraceElement>,
-    val parent: StackTracePointer
-) : StackTrace
+    override val elements: List<ParsedStackTraceElement>,
+    override val parent: StackTracePointer
+) : CausedStackTrace, ParsedStackTrace
 
 /**
  * The Root stack trace (Top stack trace of tree without parent).
  *
- * @see StackTrace
+ * @see ParsedStackTrace
  */
-public data class RootStackTrace(
+public data class ParsedRootStackTrace(
     override val text: String,
     @ForpInternals override val context: StackTraceContext,
-    override val exception: QualifiedClass,
+    override val exception: ParsedQualifiedClass,
     override val message: String?,
-    override val elements: List<StackTraceElement>,
-    public val children: List<CausedStackTrace>
-) : StackTrace
+    override val elements: List<ParsedStackTraceElement>,
+    public override val children: List<ParsedCausedStackTrace>
+) : RootStackTrace, ParsedStackTrace

@@ -1,5 +1,5 @@
 import dev.schlaubi.forp.core.StackTraceParser
-import dev.schlaubi.forp.core.stacktrace.RootStackTrace
+import dev.schlaubi.forp.core.stacktrace.ParsedRootStackTrace
 import kotlin.test.assertEquals
 
 /**
@@ -25,7 +25,7 @@ infix fun <T> T?.shouldBe(other: T) = assertEquals(other, this)
 /**
  * This takes [input] and applies [conditioner] to it.
  */
-fun checkFile(input: String, conditioner: RootStackTrace.() -> Unit) {
+fun checkFile(input: String, conditioner: ParsedRootStackTrace.() -> Unit) {
     val stackTrace =
         StackTraceParser.parse(input)
 

@@ -1,7 +1,8 @@
 package dev.schlaubi.forp.fetch
 
-import dev.schlaubi.forp.core.stacktrace.RootStackTrace
+import dev.schlaubi.forp.core.stacktrace.ParsedRootStackTrace
 import dev.schlaubi.forp.fetch.input.Input
+import dev.schlaubi.forp.fetch.processor.Result
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExecutorCoroutineDispatcher
 import kotlinx.coroutines.asCoroutineDispatcher
@@ -24,9 +25,9 @@ public class JavaStackTraceFetcher internal constructor(
     /**
      * Fetches all [inputs] asynchronously and in parallel.
      *
-     * @return a [CompletableFuture] containing all [RootStackTrace]s found
+     * @return a [CompletableFuture] containing all [ParsedRootStackTrace]s found
      */
-    public fun fetchAsync(vararg inputs: Input): CompletableFuture<List<RootStackTrace>> =
+    public fun fetchAsync(vararg inputs: Input): CompletableFuture<List<Result>> =
         future { delegate.fetch(*inputs) }
 
     /**
@@ -34,17 +35,17 @@ public class JavaStackTraceFetcher internal constructor(
      *
      * @see CompletableFuture.join
      * @see fetchAsync
-     * @return a [List] containing all [RootStackTrace]s found
+     * @return a [List] containing all [ParsedRootStackTrace]s found
      */
-    public fun fetch(vararg inputs: Input): List<RootStackTrace> =
+    public fun fetch(vararg inputs: Input): List<Result> =
         fetchAsync(inputs.asIterable()).join()
 
     /**
      * Fetches all [inputs] asynchronously and in parallel.
      *
-     * @return a [CompletableFuture] containing all [RootStackTrace]s found
+     * @return a [CompletableFuture] containing all [ParsedRootStackTrace]s found
      */
-    public fun fetchAsync(inputs: Iterable<Input>): CompletableFuture<List<RootStackTrace>> =
+    public fun fetchAsync(inputs: Iterable<Input>): CompletableFuture<List<Result>> =
         future { delegate.fetch(inputs) }
 
     /**
@@ -52,17 +53,17 @@ public class JavaStackTraceFetcher internal constructor(
      *
      * @see CompletableFuture.join
      * @see fetchAsync
-     * @return a [List] containing all [RootStackTrace]s found
+     * @return a [List] containing all [ParsedRootStackTrace]s found
      */
-    public fun fetch(inputs: Iterable<Input>): List<RootStackTrace> =
+    public fun fetch(inputs: Iterable<Input>): List<Result> =
         fetchAsync(inputs).join()
 
     /**
      * Fetches [input] asynchronously.
      *
-     * @return a [CompletableFuture] containing all [RootStackTrace]s found
+     * @return a [CompletableFuture] containing all [ParsedRootStackTrace]s found
      */
-    public fun fetchAsync(input: Input): CompletableFuture<List<RootStackTrace>> =
+    public fun fetchAsync(input: Input): CompletableFuture<List<Result>> =
         future { delegate.fetch(input) }
 
     /**
@@ -70,9 +71,9 @@ public class JavaStackTraceFetcher internal constructor(
      *
      * @see CompletableFuture.join
      * @see fetchAsync
-     * @return a [List] containing all [RootStackTrace]s found
+     * @return a [List] containing all [ParsedRootStackTrace]s found
      */
-    public fun fetch(input: Input): List<RootStackTrace> =
+    public fun fetch(input: Input): List<Result> =
         fetchAsync(input).join()
 
     /**

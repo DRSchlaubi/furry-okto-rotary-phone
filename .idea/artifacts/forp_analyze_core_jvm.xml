@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="forp-analyze-core-jvm">
+    <output-path>C:\Users\micha\IdeaProjects\fopr\forp-analyze\forp-analyze-core\build\libs</output-path>
+    <root id="archive" name="forp-analyze-core-jvm.jar">
+      <element id="module-output" name="forp.forp-analyze.forp-analyze-core.jvmMain" />
+    </root>
+  </artifact>
+</component>

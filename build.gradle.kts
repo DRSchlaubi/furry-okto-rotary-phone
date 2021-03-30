@@ -1,5 +1,5 @@
 plugins {
-    kotlin("multiplatform") version "1.4.31" apply false
+    kotlin("multiplatform") version "1.4.32" apply false
     id("org.jetbrains.dokka") version "1.4.20"
     id("org.ajoberstar.git-publish") version "2.1.3"
     signing

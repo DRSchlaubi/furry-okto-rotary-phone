@@ -1,5 +1,7 @@
+// Modified from: https://github.com/Strumenta/antlr-kotlin/blob/master/antlr-kotlin-runtime/src/commonMain/kotlin/org/antlr/v4/kotlinruntime/StringCharStream.kt
 package dev.schlaubi.forp.core
 
+import dev.schlaubi.forp.core.internal.charStreamFromCharSequence
 import dev.schlaubi.forp.core.parser.StackTraceLexer
 import dev.schlaubi.forp.core.stacktrace.*
 import org.antlr.v4.kotlinruntime.BufferedTokenStream
@@ -19,16 +21,23 @@ import dev.schlaubi.forp.core.parser.StackTraceParser as LowLevelParser
 public object StackTraceParser {
 
     /**
-     * Parses the string [input] as a [RootStackTrace].
+     * Parses the string [input] as a [ParsedRootStackTrace].
      */
     @JvmStatic
-    public fun parse(input: String): RootStackTrace = parse(CharStreams.fromString(input))
+    public fun parse(input: String): ParsedRootStackTrace = parse(CharStreams.fromString(input))
 
     /**
-     * Parses [input] into a [RootStackTrace].
+     * Parses the string [input] as a [ParsedRootStackTrace].
      */
     @JvmStatic
-    public fun parse(input: CharStream): RootStackTrace {
+    public fun parse(input: CharSequence): ParsedRootStackTrace =
+        parse(charStreamFromCharSequence(input))
+
+    /**
+     * Parses [input] into a [ParsedRootStackTrace].
+     */
+    @JvmStatic
+    public fun parse(input: CharStream): ParsedRootStackTrace {
         val lexer = StackTraceLexer(input)
         val tokens = BufferedTokenStream(lexer)
         val parser = LowLevelParser(tokens)
@@ -37,20 +46,20 @@ public object StackTraceParser {
     }
 }
 
-private fun LowLevelParser.StackTraceContext.toAPI(): RootStackTrace {
+private fun LowLevelParser.StackTraceContext.toAPI(): ParsedRootStackTrace {
     val messageLine = findMessageLine().nn()
     val exception = messageLine.findQualifiedClass().nn().toAPI()
     val elements = findStackTraceLine().map { it.toAPI() }
 
     val root = StackTracePointer()
 
-    fun LowLevelParser.CausedByLineContext.toAPI(parent: StackTracePointer): CausedStackTrace {
+    fun LowLevelParser.CausedByLineContext.toAPI(parent: StackTracePointer): ParsedCausedStackTrace {
         val trace = findStackTrace().nn()
         val childMessageLine = trace.findMessageLine().nn()
         val childException = childMessageLine.findQualifiedClass().nn().toAPI()
         val childElements = trace.findStackTraceLine().nn().map { it.toAPI() }
 
-        return CausedStackTrace(
+        return ParsedCausedStackTrace(
             trace.text,
             trace,
             childException,
@@ -60,7 +69,7 @@ private fun LowLevelParser.StackTraceContext.toAPI(): RootStackTrace {
         )
     }
 
-    val children = mutableListOf<CausedStackTrace>()
+    val children = mutableListOf<ParsedCausedStackTrace>()
     var parentPointer = root
     for (causedByLineContext in findCausedByLine()) {
         val element = causedByLineContext.toAPI(parentPointer)
@@ -68,7 +77,7 @@ private fun LowLevelParser.StackTraceContext.toAPI(): RootStackTrace {
         children.add(element)
     }
 
-    return RootStackTrace(
+    return ParsedRootStackTrace(
         text,
         this,
         exception,
@@ -80,19 +89,19 @@ private fun LowLevelParser.StackTraceContext.toAPI(): RootStackTrace {
     }
 }
 
-private fun LowLevelParser.StackTraceLineContext.toAPI(): StackTraceElement {
-    fun toEllipsis(ellipsis: LowLevelParser.EllipsisLineContext): StackTraceElement {
+private fun LowLevelParser.StackTraceLineContext.toAPI(): ParsedStackTraceElement {
+    fun toEllipsis(ellipsis: LowLevelParser.EllipsisLineContext): ParsedStackTraceElement {
         val skipped = ellipsis.Number().nn().text.toInt()
 
-        return EllipsisStackTraceElement(this, skipped)
+        return ParsedEllipsisStackTraceElement(this, skipped)
     }
 
-    fun toElement(element: LowLevelParser.AtLineContext): StackTraceElement {
+    fun toElement(element: LowLevelParser.AtLineContext): ParsedStackTraceElement {
         val method = element.findQualifiedMethod().nn().toAPI()
         val definition = element.findMethodFileDefinition().nn().toAPI()
         val source = element.findMethodFileSource()?.toAPI()
 
-        return DefaultStackTraceElement(this, method, definition, source)
+        return ParsedDefaultStackTraceElement(this, method, definition, source)
     }
 
     val atLine = findAtLine()
@@ -101,24 +110,24 @@ private fun LowLevelParser.StackTraceLineContext.toAPI(): StackTraceElement {
     return when {
         atLine != null -> toElement(atLine)
         ellipsis != null -> toEllipsis(ellipsis)
-        else -> InvalidStackTraceElement(this)
+        else -> ParsedInvalidStackTraceElement(this)
     }
 }
 
-private fun LowLevelParser.MethodFileDefinitionContext.toAPI(): DefaultStackTraceElement.Source {
+private fun LowLevelParser.MethodFileDefinitionContext.toAPI(): ParsedDefaultStackTraceElement.ParsedSource {
     val file = findClassFile()
-    fun toSource(sourceFile: LowLevelParser.SourceFileContext): DefaultStackTraceElement.Source {
+    fun toSource(sourceFile: LowLevelParser.SourceFileContext): ParsedDefaultStackTraceElement.ParsedSource {
         val fileName = sourceFile.findSourceFileName().nn().text
         val line = sourceFile.findLineNumber().nn().text.toInt()
 
-        return DefaultStackTraceElement.FileSource(this, fileName, line)
+        return ParsedDefaultStackTraceElement.ParsedFileSource(this, fileName, line)
     }
 
-    fun toNative(): DefaultStackTraceElement.Source =
-        DefaultStackTraceElement.NativeSource(this)
+    fun toNative(): ParsedDefaultStackTraceElement.ParsedSource =
+        ParsedDefaultStackTraceElement.ParsedNativeSource(this)
 
-    fun toUnknown(): DefaultStackTraceElement.Source =
-        DefaultStackTraceElement.UnknownSource(this)
+    fun toUnknown(): ParsedDefaultStackTraceElement.ParsedSource =
+        ParsedDefaultStackTraceElement.ParsedUnknownSource(this)
 
     val sourceFile = file?.findSourceFile()
 
@@ -126,31 +135,31 @@ private fun LowLevelParser.MethodFileDefinitionContext.toAPI(): DefaultStackTrac
         sourceFile != null -> toSource(sourceFile)
         file?.NATIVE_METHOD() != null -> toNative()
         file?.UNKNOWN_SOURCE() != null -> toUnknown()
-        else -> DefaultStackTraceElement.InvalidSource(this)
+        else -> ParsedDefaultStackTraceElement.ParsedInvalidSource(this)
     }
 }
 
-private fun LowLevelParser.MethodFileSourceContext.toAPI(): DefaultStackTraceElement.SourceFile {
+private fun LowLevelParser.MethodFileSourceContext.toAPI(): ParsedDefaultStackTraceElement.ParsedSourceFile {
     val file = findJarFile().nn().text
     val version = findString().nn().text
 
-    return DefaultStackTraceElement.SourceFile(this, file, version)
+    return ParsedDefaultStackTraceElement.ParsedSourceFile(this, file, version)
 }
 
-private fun LowLevelParser.QualifiedMethodContext.toAPI(): QualifiedMethod {
+private fun LowLevelParser.QualifiedMethodContext.toAPI(): ParsedQualifiedMethod {
     val clazz = findQualifiedClass().nn().toAPI()
 
-    fun toMethod(name: LowLevelParser.MethodNameContext): QualifiedMethod {
-        return DefaultQualifiedMethod(this, clazz, name.text)
+    fun toMethod(name: LowLevelParser.MethodNameContext): ParsedQualifiedMethod {
+        return ParsedDefaultQualifiedMethod(this, clazz, name.text)
     }
 
-    fun toConstructor(): QualifiedMethod {
-        return QualifiedConstructor(this, clazz)
+    fun toConstructor(): ParsedQualifiedMethod {
+        return ParsedQualifiedConstructor(this, clazz)
     }
 
-    fun toLambda(lambda: LowLevelParser.LambdaContext): QualifiedMethod {
+    fun toLambda(lambda: LowLevelParser.LambdaContext): ParsedQualifiedMethod {
 
-        return Lambda(this, clazz, lambda.text)
+        return ParsedLambda(this, clazz, lambda.text)
     }
 
     val methodName = findMethodName()
@@ -160,16 +169,16 @@ private fun LowLevelParser.QualifiedMethodContext.toAPI(): QualifiedMethod {
         methodName != null -> toMethod(methodName)
         findConstructorDef() != null -> toConstructor()
         lambda != null -> toLambda(lambda)
-        else -> InvalidQualifiedMethod(this, clazz)
+        else -> ParsedInvalidQualifiedMethod(this, clazz)
     }
 }
 
-private fun LowLevelParser.QualifiedClassContext.toAPI(): QualifiedClass {
+private fun LowLevelParser.QualifiedClassContext.toAPI(): ParsedQualifiedClass {
     val packagePath = findPackagePath()?.findIdentifier()?.joinToString(".") { it.text }
     val className = findClassName().nn().text
     val innerClasses = findInnerClassName().nn().map { it.findClassName().nn().text }
 
-    return QualifiedClass(this, packagePath, className, innerClasses)
+    return ParsedQualifiedClass(this, packagePath, className, innerClasses)
 }
 
 private class ImmutableList<T>(val delegate: List<T>) : List<T> by delegate {

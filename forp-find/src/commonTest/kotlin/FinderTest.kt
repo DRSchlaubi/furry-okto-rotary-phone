@@ -1,4 +1,4 @@
-import dev.schlaubi.forp.core.stacktrace.RootStackTrace
+import dev.schlaubi.forp.core.stacktrace.ParsedRootStackTrace
 import kotlin.js.JsName
 import kotlin.test.Test
 
@@ -25,7 +25,7 @@ class  FinderTest {
     fun `find two simple stack traces`() = checkFileForInputs(trace2) {
         size shouldBe 2
 
-        fun RootStackTrace.check() {
+        fun ParsedRootStackTrace.check() {
             exception {
                 packagePath shouldBe "java.lang"
                 className shouldBe "NullPointerException"
@@ -42,7 +42,7 @@ class  FinderTest {
     fun `find three simple stack traces`() = checkFileForInputs(trace3) {
         size shouldBe 3
 
-        fun RootStackTrace.check() {
+        fun ParsedRootStackTrace.check() {
             exception {
                 packagePath shouldBe "java.lang"
                 className shouldBe "NullPointerException"
@@ -88,7 +88,7 @@ class  FinderTest {
     fun `find three complex stack trace`() = checkFileForInputs(trace5) {
         size shouldBe 3
 
-        fun RootStackTrace.check() {
+        fun ParsedRootStackTrace.check() {
             exception {
                 packagePath shouldBe "org.bukkit.plugin"
                 className shouldBe "InvalidPluginException"

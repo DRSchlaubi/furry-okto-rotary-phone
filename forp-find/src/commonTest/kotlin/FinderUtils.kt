@@ -1,10 +1,10 @@
-import dev.schlaubi.forp.core.stacktrace.RootStackTrace
+import dev.schlaubi.forp.core.stacktrace.ParsedRootStackTrace
 import dev.schlaubi.forp.find.StackTraceFinder
 
 /**
- * Checks [input] for [RootStackTrace]s.
+ * Checks [input] for [ParsedRootStackTrace]s.
  */
-fun checkFileForInputs(input: String, conditioner: List<RootStackTrace>.() -> Unit) {
+fun checkFileForInputs(input: String, conditioner: List<ParsedRootStackTrace>.() -> Unit) {
     val stackTrace =
         StackTraceFinder.findStackTraces(input)
 
