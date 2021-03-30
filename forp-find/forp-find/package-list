@@ -2,4 +2,5 @@ $dokka.format:html-v1
 $dokka.linkExtension:html
 
 dev.schlaubi.forp.find
+dev.schlaubi.forp.find.internal
 
