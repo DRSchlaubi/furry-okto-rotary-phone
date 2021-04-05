@@ -1,5 +1,6 @@
-package dev.schlaubi.forp.core
+package dev.schlaubi.forp.analyze.server.forp.core
 
+import dev.schlaubi.forp.core.StackTraceParser
 import dev.schlaubi.forp.core.stacktrace.ParsedRootStackTrace
 import org.antlr.v4.kotlinruntime.CharStreams
 import java.io.InputStream

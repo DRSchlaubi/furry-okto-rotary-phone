@@ -15,7 +15,7 @@ import java.nio.file.StandardOpenOption
 @JvmOverloads
 public fun StackTraceFinder.findStackTraces(
     path: Path,
-    charset: Charset = Charsets.UTF_8
+    charset: Charset = Charsets.UTF_8,
 ): List<ParsedRootStackTrace> =
     FileChannel.open(path, StandardOpenOption.READ).use {
         findStackTraces(it, charset)
@@ -29,7 +29,7 @@ public fun StackTraceFinder.findStackTraces(
 @JvmOverloads
 public fun StackTraceFinder.findStackTraces(
     channel: ReadableByteChannel,
-    charset: Charset = Charsets.UTF_8
+    charset: Charset = Charsets.UTF_8,
 ): List<ParsedRootStackTrace> =
     findStackTraces(Channels.newInputStream(channel), charset)
 
@@ -41,7 +41,7 @@ public fun StackTraceFinder.findStackTraces(
 @JvmOverloads
 public fun StackTraceFinder.findStackTraces(
     inputStream: InputStream,
-    charset: Charset = Charsets.UTF_8
+    charset: Charset = Charsets.UTF_8,
 ): List<ParsedRootStackTrace> {
     val text = inputStream.use { it.readAllBytes() }.toString(charset)
 

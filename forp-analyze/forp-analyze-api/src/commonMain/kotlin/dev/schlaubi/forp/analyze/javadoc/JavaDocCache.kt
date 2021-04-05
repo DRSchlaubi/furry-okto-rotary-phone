@@ -1,7 +1,11 @@
 package dev.schlaubi.forp.analyze.javadoc
 
-public interface JavaDocCache {
-    public val storedPackage: List<String>
+import dev.schlaubi.forp.parser.stacktrace.QualifiedClass
 
-    public fun findDoc(identifier: String): Any
+public interface JavaDocCache {
+    public val storedPackage: Set<String>
+
+    public fun prepare()
+
+    public suspend fun findDoc(identifier: QualifiedClass): DocumentedObject?
 }

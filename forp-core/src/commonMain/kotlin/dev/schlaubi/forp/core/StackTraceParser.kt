@@ -1,4 +1,3 @@
-// Modified from: https://github.com/Strumenta/antlr-kotlin/blob/master/antlr-kotlin-runtime/src/commonMain/kotlin/org/antlr/v4/kotlinruntime/StringCharStream.kt
 package dev.schlaubi.forp.core
 
 import dev.schlaubi.forp.core.internal.charStreamFromCharSequence

@@ -1,6 +1,7 @@
 package dev.schlaubi.forp.analyze.core
 
 import dev.schlaubi.forp.analyze.StackTraceAnalyzer
+import dev.schlaubi.forp.analyze.javadoc.JavaDocCache
 import dev.schlaubi.forp.fetch.StackTraceFetcher
 import dev.schlaubi.forp.fetch.StackTraceFetcherBuilder
 import dev.schlaubi.forp.fetch.stackTraceFetcher
@@ -27,6 +28,8 @@ public abstract class AbstractStackTraceAnalyzerBuilder {
      */
     public var fetcher: StackTraceFetcher? = null
 
+    public var javaDocCache: JavaDocCache? = null
+
     public open var coroutineDispatcher: CoroutineContext = Dispatchers.Default + Job()
 
     /**
@@ -43,8 +46,12 @@ public abstract class AbstractStackTraceAnalyzerBuilder {
     @JvmName("buildKotlin")
     internal fun build(): StackTraceAnalyzer {
         val fetcher = fetcher
+        val javaDocCache = javaDocCache
         requireNotNull(fetcher) { "Fetcher may not be null" }
+        requireNotNull(javaDocCache) { "Javadoc cache may not be null" }
 
-        return StackTraceAnalyzerImpl(fetcher, coroutineDispatcher)
+        javaDocCache.prepare()
+
+        return StackTraceAnalyzerImpl(fetcher, coroutineDispatcher, javaDocCache)
     }
 }

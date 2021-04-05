@@ -1,6 +1,6 @@
 package dev.schlaubi.forp.analyze.javadoc
 
-public interface ClassMetadata {
+public interface ClassMetadata : DocumentedObject.Metadata {
     public val extensions: List<DocumentedReference>
     public val implementations: List<DocumentedReference>
     public val allImplementations: List<DocumentedReference>

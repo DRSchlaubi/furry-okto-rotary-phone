@@ -63,6 +63,7 @@ public open class Snowflake {
 
     // Get current timestamp in milliseconds, adjust for the custom epoch.
     private fun timestamp(): Long {
+        return 0L
         return Clock.System.now().toEpochMilliseconds() - customEpoch
     }
 

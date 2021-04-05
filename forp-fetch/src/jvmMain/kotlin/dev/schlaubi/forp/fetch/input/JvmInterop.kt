@@ -7,7 +7,6 @@ import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 import io.ktor.utils.io.jvm.javaio.*
 import java.io.InputStream
-import java.nio.channels.ReadableByteChannel
 import java.nio.file.Path
 import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.readBytes

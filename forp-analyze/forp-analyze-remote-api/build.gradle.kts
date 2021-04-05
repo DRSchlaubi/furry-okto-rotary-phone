@@ -1,5 +1,6 @@
 plugins {
     kotlin("multiplatform")
+    kotlin("plugin.serialization") version "1.4.32"
 }
 
 group = "dev.schlaubi.forp"
@@ -22,13 +23,39 @@ kotlin {
     }
 
     sourceSets {
-        commonMain {
+        all {
             repositories {
                 maven("https://schlaubi.jfrog.io/artifactory/forp/")
             }
+        }
 
+        commonMain {
             dependencies {
                 api(project(":forp-analyze:forp-analyze-api"))
+                api(project(":forp-analyze:docdex-client-api"))
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
+            }
+        }
+
+        commonTest {
+            dependencies {
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
+                implementation(project(":forp-test-helper"))
+            }
+        }
+
+        jvmTest {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(kotlin("test-junit5"))
+                runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+            }
+        }
+
+        jsTest {
+            dependencies {
+                implementation(kotlin("test-js"))
             }
         }
     }

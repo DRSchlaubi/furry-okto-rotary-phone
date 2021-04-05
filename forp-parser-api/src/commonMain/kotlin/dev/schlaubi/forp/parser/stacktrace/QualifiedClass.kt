@@ -20,7 +20,7 @@ public interface QualifiedClass {
         get() = innerClasses.isNotEmpty()
 
     /**
-     * The combined name of the inner class hierarchy.
+     * The combined name of the inner class hierarchy or `null` if there is none.
      */
-    public val innerClassName: String
+    public val innerClassName: String?
 }

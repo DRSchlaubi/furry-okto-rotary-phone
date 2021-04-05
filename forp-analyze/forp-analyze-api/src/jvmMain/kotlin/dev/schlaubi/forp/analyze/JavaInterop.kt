@@ -3,6 +3,7 @@
 package dev.schlaubi.forp.analyze
 
 import dev.schlaubi.forp.analyze.events.Event
+import dev.schlaubi.forp.analyze.javadoc.JavaDocCache
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.buffer
@@ -28,7 +29,16 @@ public fun interface EventListener<T : Event> {
     public fun onEvent(event: T)
 }
 
+/**
+ * Java api for [parent] that doesn't rely on coroutines.
+ */
 public class JavaStackTraceAnalyzer(private val parent: StackTraceAnalyzer) {
+    public val ready: Boolean
+        get() = parent.ready
+
+    public val javadocs: JavaDocCache
+        get() = parent.javadocs
+
     public fun createNewConversationAsync(): CompletableFuture<Conversation> =
         parent.future { parent.createNewConversation() }
 

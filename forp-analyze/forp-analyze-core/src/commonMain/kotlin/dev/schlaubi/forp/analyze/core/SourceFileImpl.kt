@@ -11,5 +11,5 @@ internal data class SourceFileImpl(
     private val lines by lazy { content.lines() }
 
     override fun lineAt(lineNumber: Int): String =
-        lines.getOrNull(lineNumber) ?: error("File does not have this line")
+        lines.getOrNull(lineNumber - 1) ?: error("File does not have this line")
 }

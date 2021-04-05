@@ -1,7 +1,6 @@
 package dev.schlaubi.forp.fetch
 
 import dev.schlaubi.forp.fetch.processor.InputProcessor
-import dev.schlaubi.forp.fetch.stackTraceFetcher
 import io.ktor.client.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors

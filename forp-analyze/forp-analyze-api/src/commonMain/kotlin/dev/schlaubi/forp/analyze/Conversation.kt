@@ -36,6 +36,7 @@ public interface Conversation : CoroutineScope {
      * Cancels any further processing of this conversation.
      */
     public fun forget()
+
 }
 
 /**

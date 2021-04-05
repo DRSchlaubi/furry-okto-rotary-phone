@@ -4,7 +4,9 @@ import dev.schlaubi.forp.analyze.Conversation
 import dev.schlaubi.forp.analyze.core.utils.ClassFinder
 import dev.schlaubi.forp.analyze.events.Event
 import dev.schlaubi.forp.analyze.events.ExceptionFoundEvent
+import dev.schlaubi.forp.analyze.events.JavaDocFoundEvent
 import dev.schlaubi.forp.analyze.events.SourceFileFoundEvent
+import dev.schlaubi.forp.analyze.javadoc.DocumentedClassObject
 import dev.schlaubi.forp.fetch.input.Input
 import dev.schlaubi.forp.fetch.processor.Result
 import dev.schlaubi.forp.parser.stacktrace.RootStackTrace
@@ -27,10 +29,13 @@ internal class ConversationImpl(
 
     override fun consumeNewInput(input: Input) {
         launch {
+            println("fetching")
             analyzer.fetch(input).forEach {
                 val result = it.result
+                println("Got result")
                 processResult(it)
                 if (result != null) {
+                    println("Processing stacktrace")
                     processNewException(result)
                 }
             }
@@ -46,8 +51,23 @@ internal class ConversationImpl(
     }
 
     private suspend fun processNewException(exception: RootStackTrace) {
-        // TODO: javadoc
         eventFlow.emit(ExceptionFoundEvent(exception))
+
+        val exceptions = (exception.children.map { it.exception } + exception.exception)
+            .distinct()
+        exceptions.forEach {
+            val doc = analyzer.javadocs.findDoc(
+                exception.exception
+            ) as? DocumentedClassObject
+
+            if (doc == null) {
+                println("No doc found for $it")
+                println("Potential: $doc")
+            } else {
+                eventFlow.emit(JavaDocFoundEvent(it, doc))
+            }
+
+        }
     }
 
     override fun forget() {

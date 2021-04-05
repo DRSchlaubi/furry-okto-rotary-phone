@@ -23,11 +23,13 @@ public data class ParsedQualifiedClass(
     override val context: QualifiedClassContext,
     override val packagePath: String?,
     override val className: String,
-    override val innerClasses: List<String>
+    override val innerClasses: List<String>,
 ) : QualifiedClass, ParsedElement {
 
     /**
      * The combined name of the inner class hierarchy.
      */
-    override val innerClassName: String by lazy { innerClasses.joinToString(".") }
+    override val innerClassName: String? by lazy {
+        if (innerClasses.isEmpty()) null else innerClasses.joinToString(".")
+    }
 }

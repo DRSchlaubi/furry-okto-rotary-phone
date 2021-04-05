@@ -1,6 +1,6 @@
 package dev.schlaubi.forp.analyze.javadoc
 
-public interface MethodMetadata {
+public interface MethodMetadata : DocumentedObject.Metadata {
     public val owner: String
     public val parameters: List<MethodParameter>
     public val parameterDescriptions: Map<String, String>

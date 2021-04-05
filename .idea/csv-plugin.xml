@@ -10,6 +10,27 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="C:\Users\micha\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlinx\kotlinx-serialization-core-js\1.0.1\276b8090103ba6ccc1acd45277cc5929e5fe37d3\kotlinx-serialization-core-js-1.0.1-sources.jar!\commonMain\kotlinx\serialization\Serializers.kt">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Users\micha\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlinx\kotlinx-serialization-core\1.1.0\3815fbfe96cbf578d319f2750d9f64d3c617c9d0\kotlinx-serialization-core-1.1.0-sources.jar!\commonMain\kotlinx\serialization\encoding\Decoding.kt">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Users\micha\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlinx\kotlinx-serialization-core\1.1.0\3815fbfe96cbf578d319f2750d9f64d3c617c9d0\kotlinx-serialization-core-1.1.0-sources.jar!\commonMain\kotlinx\serialization\modules\SerializersModuleBuilders.kt">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\build.gradle.kts">
           <value>
             <Attribute>
@@ -21,6 +42,13 @@
           <value>
             <Attribute>
               <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\forp-analyze\docdex-client\src\commonMain\kotlin\dev\schlaubi\forp\analyze\javadoc\DocDexJavadocCache.kt">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
             </Attribute>
           </value>
         </entry>
@@ -74,6 +102,13 @@
           </value>
         </entry>
         <entry key="\forp-parser\src\commonAntlr\antlr\StackTrace.g4">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\settings.gradle.kts">
           <value>
             <Attribute>
               <option name="separator" value=":" />

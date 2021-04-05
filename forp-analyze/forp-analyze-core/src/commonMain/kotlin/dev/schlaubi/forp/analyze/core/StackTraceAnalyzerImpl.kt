@@ -10,14 +10,16 @@ import kotlin.coroutines.CoroutineContext
 
 internal class StackTraceAnalyzerImpl(
     private val fetcher: StackTraceFetcher,
-    override val coroutineContext: CoroutineContext
+    override val coroutineContext: CoroutineContext,
+    override val javadocs: JavaDocCache
 ) : StackTraceAnalyzer {
 
     private val memory = mutableMapOf<Long, Conversation>()
 
+    override val ready: Boolean
+        get() = ::memory.isInitialized
+
     suspend fun fetch(input: Input) = fetcher.fetch(input)
-    override val javadocs: JavaDocCache
-        get() = TODO("Not yet implemented")
 
     override suspend fun createNewConversation(): Conversation {
         val conversation = ConversationImpl(this, Snowflake.nextId())

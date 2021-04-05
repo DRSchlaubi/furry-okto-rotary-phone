@@ -5,9 +5,9 @@ import dev.schlaubi.forp.analyze.core.SourceFileImpl
 import dev.schlaubi.forp.find.internal.findRange
 
 internal object ClassFinder {
-    // https://regex101.com/r/hYZOFr/2
+    // https://regex101.com/r/hYZOFr/4
     private val JVM_CLASS_START_PATTERN =
-        """(package\s*(?:\w+\.?)+;[\s\S]*?(?=class)class\s*)(\w*)""".toRegex()
+        """((?:package\s*(?:\w+\.?)+;[\s\S]*?)?(?=class)class\s*)(\w+)""".toRegex()
 
     private const val openingBracket = '{'
     private const val closingBracket = '}'

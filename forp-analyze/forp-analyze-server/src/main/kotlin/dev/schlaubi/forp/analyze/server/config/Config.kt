@@ -1,0 +1,27 @@
+package dev.schlaubi.forp.analyze.server.config
+
+import com.uchuhimo.konf.Config as Konfig
+import dev.schlaubi.forp.analyze.server.config.ForpConfigSpec as Spec
+
+class Config(private val config: Konfig) {
+    val docs = Docs()
+    val inputs = Inputs()
+    val auth = Auth()
+
+    inner class Docs {
+        val docdexUrl by config.property(Spec.Docs.docdexUrl)
+    }
+    inner class Inputs {
+        val strings by config.property(Spec.Input.strings)
+        val files by config.property(Spec.Input.files)
+        val githubGist by config.property(Spec.Input.githubGist)
+        val pastebin by config.property(Spec.Input.pastebin)
+        val ghostbin by config.property(Spec.Input.ghostbin)
+        val hastebinUrls by config.property(Spec.Input.hastebinUrls)
+        val images by config.property(Spec.Input.images)
+    }
+
+    inner class Auth {
+        val keys by config.property(Spec.Auth.keys)
+    }
+}
