@@ -2,6 +2,7 @@ package dev.schlaubi.forp.analyze.server.converstaion
 
 import dev.schlaubi.forp.analyze.remote.RemoteConversationEntity
 import dev.schlaubi.forp.analyze.remote.RemoteTextInput
+import dev.schlaubi.forp.analyze.server.auth.forp
 import dev.schlaubi.forp.fetch.input.FileInput
 import dev.schlaubi.forp.fetch.input.Input.Companion.toInput
 import dev.schlaubi.forp.fetch.input.Input.Companion.toPlainInput
@@ -31,12 +32,19 @@ class Conversations {
 fun Route.conversations() {
     location<Conversations> {
         post {
-            val conversation = ConversationManager.new()
+            val (token) = call.forp()
+            val conversation = ConversationManager.new(token)
 
             context.respond(RemoteConversationEntity(conversation.id))
         }
 
         location<Conversations.Conversation> {
+            delete<Conversations.Conversation> { data ->
+                val conversation = ConversationManager.findConversation(data.id)
+
+                conversation.forget()
+            }
+
             put<Conversations.Conversation.Sources> { data ->
                 val conversation = ConversationManager.findConversation(data.conversation.id)
                 val (plain, text) = context.receive<RemoteTextInput>()

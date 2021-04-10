@@ -9,6 +9,7 @@ import dev.schlaubi.forp.fetch.processor.BinaryFileProcessor;
 import dev.schlaubi.forp.fetch.processor.HastebinProcessor;
 import dev.schlaubi.forp.fetch.processor.ImageFileProcessor;
 import dev.schlaubi.forp.fetch.processor.PlainStringProcessor;
+import dev.schlaubi.forp.fetch.processor.Result;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
@@ -64,7 +65,7 @@ public class FetcherExample {
     var input = ClassLoader.getSystemResourceAsStream("trace_2.txt");
 
     assert input != null;
-    List<ParsedRootStackTrace> stackTraces = fetcher
+    List<Result> stackTraces = fetcher
         .fetch(Inputs.fromInputStream(input, FileType.PLAIN_TEXT));
     System.out.println(stackTraces);
   }

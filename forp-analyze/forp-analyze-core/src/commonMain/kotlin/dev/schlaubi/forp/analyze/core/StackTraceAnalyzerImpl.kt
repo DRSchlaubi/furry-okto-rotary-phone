@@ -16,8 +16,7 @@ internal class StackTraceAnalyzerImpl(
 
     private val memory = mutableMapOf<Long, Conversation>()
 
-    override val ready: Boolean
-        get() = ::memory.isInitialized
+    override val ready: Boolean = true
 
     suspend fun fetch(input: Input) = fetcher.fetch(input)
 

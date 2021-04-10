@@ -13,36 +13,42 @@ import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
 
 public val EventModule: SerializersModule = SerializersModule {
-    contextual(RemoteEvent.serializer())
+    contextual(RemoteEventData.serializer())
 
     // Adding those serializers too makes it possible to find them automatically when serializing
-    contextual(RemoteEvent.RemoteExceptionFoundEvent.serializer())
-    contextual(RemoteEvent.RemoteJavaDocFoundEvent.serializer())
-    contextual(RemoteEvent.RemoteSourceFileFoundEvent.serializer())
+    contextual(RemoteEventData.RemoteExceptionFoundEvent.serializer())
+    contextual(RemoteEventData.RemoteJavaDocFoundEvent.serializer())
+    contextual(RemoteEventData.RemoteSourceFileFoundEvent.serializer())
 }
 
 @Serializable
-public sealed class RemoteEvent : Event {
-    /* @Transient */
-    override val type: Event.Type
-        get() = when (this) {
-            is ExceptionFoundEvent -> Event.Type.EXCEPTION_FOUND
-            is JavaDocFoundEvent -> Event.Type.SOURCE_FILE_FOUND
-            is SourceFileFoundEvent -> Event.Type.JAVADOC_FOUND
-            else -> error("Unknown event type: $this")
-        }
+public data class RemoteEvent(
+    public val conversationId: Long,
+    public val data: RemoteEventData,
+)
+
+public fun Event.serializable(): RemoteEventData = when (this) {
+    is ExceptionFoundEvent -> RemoteEventData.RemoteExceptionFoundEvent(exception.serializable() as RemoteStackTrace.RemoteRootStackTrace)
+    is JavaDocFoundEvent -> RemoteEventData.RemoteJavaDocFoundEvent(exceptionName.serializable(),
+        doc as AbstractDocumentedObject.AbstractDocumentedClassObject.DocumentedClassImpl)
+    is SourceFileFoundEvent -> RemoteEventData.RemoteSourceFileFoundEvent(file.serializable())
+    else -> error("Unknown event type: $this (${this::class.simpleName}")
+}
+
+@Serializable
+public sealed class RemoteEventData : Event {
 
     @Serializable
     internal data class RemoteExceptionFoundEvent(override val exception: RemoteStackTrace.RemoteRootStackTrace) :
-        ExceptionFoundEvent
+        RemoteEventData(), ExceptionFoundEvent
 
     @Serializable
     internal data class RemoteJavaDocFoundEvent(
         override val exceptionName: RemoteQualifiedClass,
         override val doc: AbstractDocumentedObject.AbstractDocumentedClassObject.DocumentedClassImpl,
-    ) : JavaDocFoundEvent
+    ) : RemoteEventData(), JavaDocFoundEvent
 
     @Serializable
     public data class RemoteSourceFileFoundEvent(override val file: RemoteSourceFile) :
-        SourceFileFoundEvent
+        RemoteEventData(), SourceFileFoundEvent
 }

@@ -2,6 +2,8 @@ package dev.schlaubi.forp.analyze.server.converstaion
 
 import dev.schlaubi.forp.analyze.Conversation
 import dev.schlaubi.forp.analyze.StackTraceAnalyzer
+import dev.schlaubi.forp.analyze.remote.RemoteEvent
+import dev.schlaubi.forp.analyze.remote.serializable
 import dev.schlaubi.forp.analyze.server.Application
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
@@ -19,6 +21,10 @@ object ConversationManager {
     }
 
     fun findConversation(id: Long) = conversations[id] ?: invalidConversation()
+
+    internal fun forget(conversation: Conversation) {
+        conversations.remove(conversation.id)
+    }
 }
 
 private fun invalidConversation(): Nothing = throw InvalidConversationException()
@@ -30,12 +36,14 @@ class APIConversation(val token: String, private val parent: Conversation) :
     Conversation by parent {
 
     private val listener: Job = events.onEach {
-        Application.webSocket.reportEvent(this, it)
+        val event = RemoteEvent(id, it.serializable())
+        Application.webSocket.reportEvent(this, event)
     }.launchIn(Application)
 
     override fun forget() {
         parent.forget()
         listener.cancel()
+        ConversationManager.forget(this)
     }
 }
 

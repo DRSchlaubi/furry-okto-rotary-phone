@@ -6,7 +6,7 @@ import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 import io.ktor.utils.io.core.internal.*
 
-internal expect fun ByteArray.readToString(): String
+public expect fun ByteArray.readToString(): String
 
 /**
  * Implementation of [InputProcessor] which reads the bytes and converts them into a string

@@ -35,5 +35,6 @@ kotlin {
                 api(project(":forp-fetch"))
             }
         }
+
     }
 }

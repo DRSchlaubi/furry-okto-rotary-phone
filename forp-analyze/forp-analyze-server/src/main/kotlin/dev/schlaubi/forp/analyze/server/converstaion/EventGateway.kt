@@ -1,6 +1,7 @@
 package dev.schlaubi.forp.analyze.server.converstaion
 
 import dev.schlaubi.forp.analyze.events.Event
+import dev.schlaubi.forp.analyze.remote.RemoteEvent
 import dev.schlaubi.forp.analyze.server.Application
 import dev.schlaubi.forp.analyze.server.auth.forp
 import io.ktor.http.cio.websocket.*
@@ -12,10 +13,11 @@ class EventGateway {
 
     private val sessions = mutableMapOf<String, DefaultWebSocketServerSession>()
 
-    suspend fun reportEvent(conversation: APIConversation, event: Event) {
+    suspend fun reportEvent(conversation: APIConversation, event: RemoteEvent) {
         val session = sessions[conversation.token] ?: error("Could not find session")
+        val json = Application.json.encodeToString(event)
 
-        session.send(event)
+        session.send(Frame.Text(json))
     }
 
     fun Route.apply() {

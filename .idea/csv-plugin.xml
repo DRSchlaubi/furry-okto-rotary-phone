@@ -52,6 +52,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\forp-analyze\forp-analyze-client\build.gradle.kts">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\forp-analyze\forp-analyze-client\src\commonMain\kotlin\dev\schlaubi\forp\analyze\client\retry\LinearRetry.kt">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\forp-core\build.gradle.kts">
           <value>
             <Attribute>

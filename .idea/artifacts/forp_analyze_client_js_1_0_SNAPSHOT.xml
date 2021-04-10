@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="forp-analyze-client-js-1.0-SNAPSHOT">
+    <output-path>D:\Users\micha\IdeaProjects\fopr\forp-analyze\forp-analyze-client\build\libs</output-path>
+    <root id="archive" name="forp-analyze-client-js-1.0-SNAPSHOT.jar" />
+  </artifact>
+</component>

@@ -3,6 +3,9 @@ package dev.schlaubi.forp.fetch
 import dev.schlaubi.forp.core.stacktrace.ParsedRootStackTrace
 import dev.schlaubi.forp.fetch.input.Input
 import dev.schlaubi.forp.fetch.processor.Result
+import io.ktor.utils.io.*
+import io.ktor.utils.io.jvm.javaio.*
+import io.ktor.utils.io.streams.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExecutorCoroutineDispatcher
 import kotlinx.coroutines.asCoroutineDispatcher

@@ -58,6 +58,7 @@ object Application : CoroutineScope {
 
         install(Locations)
         install(WebSockets)
+        install(DefaultHeaders)
 
         install(Authentication) {
             forp()

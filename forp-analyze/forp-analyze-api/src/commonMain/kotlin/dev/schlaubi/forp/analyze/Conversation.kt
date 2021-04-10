@@ -23,7 +23,7 @@ public interface Conversation : CoroutineScope {
      *
      * @see on
      */
-    public val events: SharedFlow<Event>
+    public val events: Flow<Event>
 
     /**
      * Instructs the analyzer to process a new [input].
@@ -52,7 +52,7 @@ public interface Conversation : CoroutineScope {
  */
 public inline fun <reified E : Event> Conversation.on(
     scope: CoroutineScope = this,
-    noinline consumer: suspend E.() -> Unit
+    noinline consumer: suspend E.() -> Unit,
 ): Job =
     events.buffer(Channel.UNLIMITED).filterIsInstance<E>()
         .onEach {

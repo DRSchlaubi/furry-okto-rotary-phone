@@ -36,6 +36,8 @@ kotlin {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
                 implementation(project.dependencies.platform("io.ktor:ktor-bom:1.5.2"))
+                implementation("io.ktor:ktor-client-core")
+                implementation("io.ktor:ktor-client-serialization")
                 api(project(":forp-analyze:forp-analyze-api"))
                 api(project(":forp-analyze:docdex-client-api"))
                 compileOnly(project(":forp-analyze:forp-analyze-core"))
@@ -49,9 +51,7 @@ kotlin {
 
             dependencies {
                 implementation("io.ktor:ktor-client-okhttp")
-                implementation("dev.kord:kord-core:0.7.0-SNAPSHOT")
             }
-
         }
 
         jsMain {

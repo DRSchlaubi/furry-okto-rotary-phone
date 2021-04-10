@@ -1,8 +1,8 @@
 @file:JvmName("StackTraceParserUtils")
 
-package dev.schlaubi.forp.analyze.server.forp.core
+package dev.schlaubi.forp.core
 
-import dev.schlaubi.forp.core.StackTraceParser
+import dev.schlaubi.forp.analyze.server.forp.core.parse
 import dev.schlaubi.forp.core.stacktrace.ParsedRootStackTrace
 import org.antlr.v4.kotlinruntime.CharStreams
 import java.io.IOException

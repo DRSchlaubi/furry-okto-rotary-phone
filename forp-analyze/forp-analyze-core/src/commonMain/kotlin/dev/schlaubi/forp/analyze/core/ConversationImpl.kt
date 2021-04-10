@@ -1,6 +1,9 @@
 package dev.schlaubi.forp.analyze.core
 
 import dev.schlaubi.forp.analyze.Conversation
+import dev.schlaubi.forp.analyze.core.events.ExceptionFoundEventImpl
+import dev.schlaubi.forp.analyze.core.events.JavaDocFoundEventImpl
+import dev.schlaubi.forp.analyze.core.events.SourceFileFoundEventImpl
 import dev.schlaubi.forp.analyze.core.utils.ClassFinder
 import dev.schlaubi.forp.analyze.events.Event
 import dev.schlaubi.forp.analyze.events.ExceptionFoundEvent
@@ -45,13 +48,13 @@ internal class ConversationImpl(
     private fun processResult(result: Result) {
         launch {
             ClassFinder.findClasses(result.raw).forEach {
-                eventFlow.emit(SourceFileFoundEvent(it))
+                eventFlow.emit(SourceFileFoundEventImpl(it))
             }
         }
     }
 
     private suspend fun processNewException(exception: RootStackTrace) {
-        eventFlow.emit(ExceptionFoundEvent(exception))
+        eventFlow.emit(ExceptionFoundEventImpl(exception))
 
         val exceptions = (exception.children.map { it.exception } + exception.exception)
             .distinct()
@@ -64,7 +67,7 @@ internal class ConversationImpl(
                 println("No doc found for $it")
                 println("Potential: $doc")
             } else {
-                eventFlow.emit(JavaDocFoundEvent(it, doc))
+                eventFlow.emit(JavaDocFoundEventImpl(it, doc))
             }
 
         }
