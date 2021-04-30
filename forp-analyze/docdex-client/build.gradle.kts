@@ -1,7 +1,10 @@
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization") version "1.4.32"
+    id("org.jetbrains.dokka")
 }
+
+apply(from = "../../publishing.gradle.kts")
 
 group = "dev.schlaubi.forp"
 version = "1.0-SNAPSHOT"
@@ -40,6 +43,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-serialization")
 
                 implementation("io.github.microutils:kotlin-logging:1.12.5")
+                implementation("io.github.microutils:kotlin-logging-common:1.12.5")
 
                 api(project(":forp-analyze:forp-analyze-api"))
                 api(project(":forp-analyze:docdex-client-api"))

@@ -3,6 +3,8 @@ plugins {
     kotlin("plugin.serialization") version "1.4.32"
 }
 
+apply(from = "../../publishing.gradle.kts")
+
 group = "dev.schlaubi.forp"
 version = "1.0-SNAPSHOT"
 

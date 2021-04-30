@@ -1,7 +1,10 @@
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization") version "1.4.32"
+    id("org.jetbrains.dokka")
 }
+
+apply(from = "../../publishing.gradle.kts")
 
 group = "dev.schlaubi.forp"
 version = "1.0-SNAPSHOT"

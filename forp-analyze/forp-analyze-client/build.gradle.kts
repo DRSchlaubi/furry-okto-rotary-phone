@@ -1,7 +1,10 @@
 plugins {
     kotlin("multiplatform")
     id("kotlinx-atomicfu") version "0.15.2"
+    id("org.jetbrains.dokka")
 }
+
+apply(from = "../../publishing.gradle.kts")
 
 group = "dev.schlaubi.forp"
 version = "1.0-SNAPSHOT"

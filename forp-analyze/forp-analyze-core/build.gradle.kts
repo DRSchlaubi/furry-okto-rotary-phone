@@ -1,6 +1,9 @@
 plugins {
     kotlin("multiplatform")
+    id("org.jetbrains.dokka")
 }
+
+apply(from = "../../publishing.gradle.kts")
 
 group = "me.schlaubi.forp"
 
