@@ -53,5 +53,12 @@ kotlin {
                 api(project(":forp-analyze:docdex-client-api"))
             }
         }
+
+        jsMain {
+            dependencies {
+                implementation("io.github.microutils:kotlin-logging-js:1.12.5")
+
+            }
+        }
     }
 }

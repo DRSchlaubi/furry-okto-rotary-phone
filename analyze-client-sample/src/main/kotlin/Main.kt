@@ -1,3 +1,4 @@
+import dev.schlaubi.forp.analyze.client.RemoteStackTraceAnalyzer
 import dev.schlaubi.forp.analyze.client.RemoteStackTraceAnalyzerBuilder
 import dev.schlaubi.forp.analyze.events.Event
 import dev.schlaubi.forp.analyze.javadoc.awaitReady
@@ -12,10 +13,10 @@ import kotlin.time.seconds
 
 @OptIn(ExperimentalTime::class)
 suspend fun main() {
-    val client = RemoteStackTraceAnalyzerBuilder().apply {
-        url = Url("http://localhost:8080")
+    val client = RemoteStackTraceAnalyzer {
+        url("http://localhost:8080")
         authKey = "apple-is-shit"
-    }.build()
+    }
 
     client.javadocs.awaitReady()
 

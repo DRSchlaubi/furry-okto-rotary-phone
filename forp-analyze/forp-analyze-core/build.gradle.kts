@@ -9,7 +9,6 @@ group = "me.schlaubi.forp"
 
 repositories {
     mavenCentral()
-    jcenter()
     maven("https://schlaubi.jfrog.io/forp")
 }
 
@@ -50,6 +49,7 @@ kotlin {
         jsMain {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-nodejs:0.0.7")
+                implementation("io.github.microutils:kotlin-logging-js:1.12.5")
             }
         }
 

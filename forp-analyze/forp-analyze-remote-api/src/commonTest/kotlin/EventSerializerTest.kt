@@ -2,7 +2,6 @@ import dev.schlaubi.forp.analyze.javadoc.AbstractDocumentedObject
 import dev.schlaubi.forp.analyze.javadoc.DocumentedElement
 import dev.schlaubi.forp.analyze.remote.*
 import dev.schlaubi.forp.core.StackTraceParser
-import dev.schlaubi.forp.parser.stacktrace.RootStackTrace
 import kotlinx.serialization.decodeFromString
 import kotlin.js.JsName
 import kotlin.test.Test
@@ -34,7 +33,7 @@ Caused by: java.lang.ClassNotFoundException: de.near.trollplugin.Troll
         ... 7 more
 """
         val exception = StackTraceParser.parse(trace2).serializable()
-        val event = RemoteEvent.RemoteExceptionFoundEvent(exception as RemoteStackTrace.RemoteRootStackTrace)
+        val event = RemoteEventData.RemoteExceptionFoundEvent(exception as RemoteStackTrace.RemoteRootStackTrace)
 
         test(event)
     }
@@ -43,7 +42,7 @@ Caused by: java.lang.ClassNotFoundException: de.near.trollplugin.Troll
     @Test
     fun `test source found event`() {
         val sourceFile = RemoteSourceFile("Test.java", "Test", false).serializable()
-        val event = RemoteEvent.RemoteSourceFileFoundEvent(sourceFile)
+        val event = RemoteEventData.RemoteSourceFileFoundEvent(sourceFile)
 
         test(event)
     }
@@ -54,10 +53,14 @@ Caused by: java.lang.ClassNotFoundException: de.near.trollplugin.Troll
         val javadoc = json.decodeFromString<DocumentedElement>(javadocText)
 
         val event =
-            RemoteEvent.RemoteJavaDocFoundEvent(RemoteQualifiedClass("java.lang",
-                "String",
-                emptyList(), null),
-                javadoc.`object` as AbstractDocumentedObject.AbstractDocumentedClassObject.DocumentedClassImpl)
+            RemoteEventData.RemoteJavaDocFoundEvent(
+                RemoteQualifiedClass(
+                    "java.lang",
+                    "String",
+                    emptyList(), null
+                ),
+                javadoc.`object` as AbstractDocumentedObject.AbstractDocumentedClassObject.DocumentedClassImpl
+            )
 
         test(event)
     }

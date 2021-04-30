@@ -64,6 +64,7 @@ kotlin {
         jsMain {
             dependencies {
                 implementation("io.ktor:ktor-client-js")
+                implementation("io.github.microutils:kotlin-logging-js:1.12.5")
             }
         }
     }
