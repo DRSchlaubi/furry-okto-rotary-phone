@@ -1,0 +1,30 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:dev.schlaubi.forp.analyze.remote////PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/index.html
+$dokka.location:dev.schlaubi.forp.analyze.remote//EventModule/#/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-event-module.html
+$dokka.location:dev.schlaubi.forp.analyze.remote//ForpModule/#/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-forp-module.html
+$dokka.location:dev.schlaubi.forp.analyze.remote//StackTraceModule/#/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-stack-trace-module.html
+$dokka.location:dev.schlaubi.forp.analyze.remote//serializable/dev.schlaubi.forp.analyze.events.Event#/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/serializable.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteConversationEntity///PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-conversation-entity/index.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteConversationEntity/RemoteConversationEntity/#kotlin.Long/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-conversation-entity/-remote-conversation-entity.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteConversationEntity/id/#/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-conversation-entity/id.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteEvent///PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-event/index.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteEvent/RemoteEvent/#kotlin.Long#dev.schlaubi.forp.analyze.remote.RemoteEventData/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-event/-remote-event.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteEvent/conversationId/#/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-event/conversation-id.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteEvent/data/#/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-event/data.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteEventData.RemoteSourceFileFoundEvent///PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-event-data/-remote-source-file-found-event/index.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteEventData.RemoteSourceFileFoundEvent/RemoteSourceFileFoundEvent/#dev.schlaubi.forp.analyze.remote.RemoteSourceFile/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-event-data/-remote-source-file-found-event/-remote-source-file-found-event.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteEventData.RemoteSourceFileFoundEvent/file/#/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-event-data/-remote-source-file-found-event/file.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteEventData///PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-event-data/index.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteSourceFile///PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-source-file/index.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteSourceFile/RemoteSourceFile/#kotlin.String#kotlin.String#kotlin.Boolean/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-source-file/-remote-source-file.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteSourceFile/content/#/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-source-file/content.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteSourceFile/lineAt/#kotlin.Int/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-source-file/line-at.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteSourceFile/name/#/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-source-file/name.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteSourceFile/potentiallyIncomplete/#/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-source-file/potentially-incomplete.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteTextInput///PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-text-input/index.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteTextInput/RemoteTextInput/#kotlin.Boolean#kotlin.String/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-text-input/-remote-text-input.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteTextInput/isPlainText/#/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-text-input/is-plain-text.html
+$dokka.location:dev.schlaubi.forp.analyze.remote/RemoteTextInput/text/#/PointingToDeclaration/forp-analyze-remote-api/dev.schlaubi.forp.analyze.remote/-remote-text-input/text.html
+dev.schlaubi.forp.analyze.remote
+

@@ -1,6 +1,17 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
-
+$dokka.location:dev.schlaubi.forp.find.internal////PointingToDeclaration/forp-find/dev.schlaubi.forp.find.internal/index.html
+$dokka.location:dev.schlaubi.forp.find.internal//findRange/kotlin.text.MatchResult#/PointingToDeclaration/forp-find/dev.schlaubi.forp.find.internal/find-range.html
+$dokka.location:dev.schlaubi.forp.find////PointingToDeclaration/forp-find/dev.schlaubi.forp.find/index.html
+$dokka.location:dev.schlaubi.forp.find//findStackTraces/#java.io.InputStream#java.nio.charset.Charset/PointingToDeclaration/forp-find/dev.schlaubi.forp.find/find-stack-traces.html
+$dokka.location:dev.schlaubi.forp.find//findStackTraces/#java.nio.channels.ReadableByteChannel#java.nio.charset.Charset/PointingToDeclaration/forp-find/dev.schlaubi.forp.find/find-stack-traces.html
+$dokka.location:dev.schlaubi.forp.find//findStackTraces/#java.nio.file.Path#java.nio.charset.Charset/PointingToDeclaration/forp-find/dev.schlaubi.forp.find/find-stack-traces.html
+$dokka.location:dev.schlaubi.forp.find//findStackTraces/dev.schlaubi.forp.find.StackTraceFinder#java.io.InputStream#java.nio.charset.Charset/PointingToDeclaration/forp-find/dev.schlaubi.forp.find/find-stack-traces.html
+$dokka.location:dev.schlaubi.forp.find//findStackTraces/dev.schlaubi.forp.find.StackTraceFinder#java.nio.channels.ReadableByteChannel#java.nio.charset.Charset/PointingToDeclaration/forp-find/dev.schlaubi.forp.find/find-stack-traces.html
+$dokka.location:dev.schlaubi.forp.find//findStackTraces/dev.schlaubi.forp.find.StackTraceFinder#java.nio.file.Path#java.nio.charset.Charset/PointingToDeclaration/forp-find/dev.schlaubi.forp.find/find-stack-traces.html
+$dokka.location:dev.schlaubi.forp.find/StackTraceFinder///PointingToDeclaration/forp-find/dev.schlaubi.forp.find/-stack-trace-finder/index.html
+$dokka.location:dev.schlaubi.forp.find/StackTraceFinder/STACK_TRACE_START/#/PointingToDeclaration/forp-find/dev.schlaubi.forp.find/-stack-trace-finder/-s-t-a-c-k_-t-r-a-c-e_-s-t-a-r-t.html
+$dokka.location:dev.schlaubi.forp.find/StackTraceFinder/findStackTraces/#kotlin.CharSequence/PointingToDeclaration/forp-find/dev.schlaubi.forp.find/-stack-trace-finder/find-stack-traces.html
 dev.schlaubi.forp.find
 dev.schlaubi.forp.find.internal
 

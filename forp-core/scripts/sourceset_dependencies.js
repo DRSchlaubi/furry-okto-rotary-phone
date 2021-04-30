@@ -1,1 +1,0 @@
-sourceset_dependencies = '{":forp-core:dokkaHtml/commonMain": [], ":forp-core:dokkaHtml/jsMain": [":forp-core:dokkaHtml/commonMain"], ":forp-core:dokkaHtml/jvmMain": [":forp-core:dokkaHtml/commonMain"]}'
