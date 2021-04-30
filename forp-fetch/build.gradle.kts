@@ -40,7 +40,7 @@ kotlin {
             }
 
             dependencies {
-                api(project.dependencies.platform("io.ktor:ktor-bom:1.5.2"))
+                api(project.dependencies.platform("io.ktor:ktor-bom:1.5.4"))
             }
         }
 

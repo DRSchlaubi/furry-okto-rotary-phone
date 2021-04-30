@@ -7,21 +7,21 @@ import io.ktor.client.request.*
 import io.ktor.client.request.forms.*
 import io.ktor.http.*
 import io.ktor.util.*
-import io.ktor.utils.io.core.*
 
 internal class ForpAnalyzerService(private val resources: RestResources) {
 
     suspend fun createNewConversation(): RemoteConversationEntity =
         resources.httpClient.post(resources.url) {
             url {
-                path("/conversations")
+                safePath("conversations")
             }
         }
 
     suspend fun uploadPlainText(conversationId: Long, isPlain: Boolean, input: String): Unit =
-        resources.httpClient.post {
+        resources.httpClient.put {
+            header(HttpHeaders.ContentType, ContentType.Application.Json)
             conversationUrl(conversationId) {
-                path("/sources")
+                safePath("sources")
             }
 
             body = RemoteTextInput(isPlain, input)
@@ -30,18 +30,18 @@ internal class ForpAnalyzerService(private val resources: RestResources) {
     suspend fun uploadFile(
         conversationId: Long,
         input: FileInput,
-    ): Unit = resources.httpClient.post {
+    ): Unit = resources.httpClient.put {
         conversationUrl(conversationId) {
-            path("/files")
+            safePath("files")
         }
 
         val bytes = input.input.toByteArray()
-        val file = ByteReadPacket(bytes)
 
         val data = formData {
             append("type", input.fileType.name)
 
-            append("file", file)
+            // The name header needs to be present for ktor to recognize it as a file
+            append("file", bytes, headersOf(HttpHeaders.ContentDisposition, "filename=upload.file"))
         }
 
         body = MultiPartFormDataContent(data)
@@ -55,12 +55,13 @@ internal class ForpAnalyzerService(private val resources: RestResources) {
 
     private fun HttpRequestBuilder.conversationUrl(id: Long, block: URLBuilder.() -> Unit = {}) =
         conversationsUrl {
-            path(id.toString())
+            safePath(id.toString())
+            block()
         }
 
     private fun HttpRequestBuilder.conversationsUrl(block: URLBuilder.() -> Unit) {
         url(URLBuilder(resources.url).apply {
-            path("/conversations")
+            safePath("conversations")
             block()
         }.build())
     }

@@ -48,5 +48,11 @@ fun Config.buildAnalyzer(): StackTraceAnalyzer = stackTraceAnalyzer {
         if (inputs.images) {
             +ImageFileProcessor(ImageAnnotatorClient.create())
         }
+
+        if (inputs.pasty) {
+            addHttpFetcher {
+                PastyProcessor(it)
+            }
+        }
     }
 }

@@ -7,13 +7,9 @@ import io.ktor.http.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+import mu.KotlinLogging
 
-// https://regex101.com/r/JvZoYD/4
-private val classReferenceRegex = "(?:((?:(?:[a-zA-Z0-9]+)\\.?)+)\\.)?([a-zA-Z0-9]+)".toRegex()
-
-// https://regex101.com/r/26jVyw/7
-private val referenceRegex =
-    "(?:((?:[a-zA-Z0-9]+\\.?)+)\\.)?([a-zA-Z0-9]+)[#.](<init>|[a-zA-Z0-9(), ]+)".toRegex()
+private val LOG = KotlinLogging.logger { }
 
 /**
  * Implementation of [JavaDocCache] that uses [DocDex](https://github.com/PiggyPiglet/DocDex).
@@ -39,16 +35,16 @@ public class DocDexJavadocCache(
 
     private fun populateIndex() {
         launch {
-            println("Index population start")
+            LOG.debug { "Index population start" }
             val allJavadocs = docdex.allJavadocs()
 
             val packageCache = mutableMapOf<String, String>()
             coroutineScope {
                 allJavadocs.asSequence()
-                    .filter { it.names.all { it !in ignoreList } }
+                    .filter { it.names.all { entry -> entry !in ignoreList } }
                     .forEach { javadoc ->
                         launch {
-                            println("Indexing ${javadoc.names.first()}")
+                            LOG.debug { "Indexing ${javadoc.names.first()}" }
                             val packageIndex = httpClient.get<String>(javadoc.link) {
                                 url {
                                     val name = encodedPath.substringBeforeLast('/').drop(1)
@@ -64,7 +60,7 @@ public class DocDexJavadocCache(
                                 }
                             }
 
-                            println("Indexing of ${javadoc.names.first()} complete")
+                            LOG.debug { "Indexing of ${javadoc.names.first()} complete" }
                         }
                     }
             }
@@ -89,6 +85,10 @@ public class DocDexJavadocCache(
                 reference.toDocDexQuery()
             ).firstOrNull()?.`object`
         }
+    }
+
+    override fun onReady(block: () -> Unit) {
+        TODO("Not yet implemented")
     }
 
     /**

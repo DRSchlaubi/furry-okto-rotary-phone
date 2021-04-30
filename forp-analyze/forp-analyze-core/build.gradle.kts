@@ -6,6 +6,7 @@ group = "me.schlaubi.forp"
 
 repositories {
     mavenCentral()
+    jcenter()
     maven("https://schlaubi.jfrog.io/forp")
 }
 
@@ -38,6 +39,8 @@ kotlin {
             dependencies {
                 api(project(":forp-analyze:forp-analyze-api"))
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.1.1")
+                implementation("io.github.microutils:kotlin-logging:1.12.5")
+                implementation("io.github.microutils:kotlin-logging-common:1.12.5")
             }
         }
 

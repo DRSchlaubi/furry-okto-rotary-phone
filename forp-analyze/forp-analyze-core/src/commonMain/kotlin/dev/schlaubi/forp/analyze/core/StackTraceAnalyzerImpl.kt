@@ -28,5 +28,9 @@ internal class StackTraceAnalyzerImpl(
         return conversation
     }
 
+    override suspend fun close() {
+        fetcher.close()
+    }
+
     fun forget(conversationId: Long) = memory.remove(conversationId) != null
 }

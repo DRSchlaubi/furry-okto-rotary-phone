@@ -7,4 +7,6 @@ public interface StackTraceAnalyzer : CoroutineScope {
     public val ready: Boolean
     public val javadocs: JavaDocCache
     public suspend fun createNewConversation(): Conversation
+
+    public suspend fun close()
 }

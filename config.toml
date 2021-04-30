@@ -1,0 +1,14 @@
+[docs]
+docdex_url = "https://docs-repository.schlaubi.net"
+
+[inputs]
+strings = true
+files = true
+githubGist = true
+pastebin = true
+ghostbin = true
+pasty = true
+images = false
+
+[auth]
+keys = ["apple-is-shit"]

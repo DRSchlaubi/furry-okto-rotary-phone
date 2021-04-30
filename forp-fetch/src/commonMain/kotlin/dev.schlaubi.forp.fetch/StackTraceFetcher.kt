@@ -44,7 +44,7 @@ public class StackTraceFetcher internal constructor(
         return inputs.flatMap { possibleStackTrace ->
             val found = StackTraceFinder.findStackTraces(possibleStackTrace)
                 .map { Result(it, possibleStackTrace) }
-            if (found.isEmpty()) listOf(Result(null, possibleStackTrace)) else found
+            found.ifEmpty { listOf(Result(null, possibleStackTrace)) }
         }
     }
 

@@ -1,6 +1,6 @@
 plugins {
     kotlin("multiplatform") version "1.4.32" apply false
-    id("org.jetbrains.dokka") version "1.4.20"
+    id("org.jetbrains.dokka") version "1.4.30"
     id("org.ajoberstar.git-publish") version "2.1.3"
     signing
     `maven-publish`
@@ -12,7 +12,7 @@ version = "1.0-SNAPSHOT"
 allprojects {
     repositories {
         mavenCentral()
-        jcenter()
+        maven("https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven")
     }
 }
 

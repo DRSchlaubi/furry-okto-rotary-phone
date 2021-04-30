@@ -6,6 +6,7 @@ import kotlinx.coroutines.delay
 //import mu.KotlinLogging
 import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
+import kotlin.time.seconds
 
 //private val LOG = KotlinLogging.logger { }
 
@@ -17,9 +18,9 @@ import kotlin.time.ExperimentalTime
  */
 @OptIn(ExperimentalTime::class)
 internal class LinearRetry constructor(
-    private val firstBackoff: Duration,
-    private val maxBackoff: Duration,
-    private val maxTries: Int,
+    private val firstBackoff: Duration = 5.seconds,
+    private val maxBackoff: Duration = 60.seconds,
+    private val maxTries: Int = 10,
 ) : Retry {
 
     init {

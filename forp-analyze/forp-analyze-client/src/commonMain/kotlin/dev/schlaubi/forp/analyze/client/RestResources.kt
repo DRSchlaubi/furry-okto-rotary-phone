@@ -7,6 +7,7 @@ import io.ktor.client.engine.*
 import io.ktor.client.features.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
+import io.ktor.client.features.websocket.*
 import io.ktor.http.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.serialization.json.Json
@@ -16,7 +17,8 @@ internal class RestResources(
     val authKey: String,
     val url: Url,
     val retry: Retry,
-    clientEngine: HttpClientEngine? = null, override val coroutineContext: CoroutineContext,
+    clientEngine: HttpClientEngineFactory<*>? = null,
+    override val coroutineContext: CoroutineContext,
 ) : CoroutineScope {
 
     val json = Json {
@@ -34,6 +36,8 @@ internal class RestResources(
             install(JsonFeature) {
                 serializer = KotlinxSerializer(json)
             }
+
+            install(WebSockets)
         }
 
         httpClient = if (clientEngine != null) {

@@ -1,10 +1,8 @@
 package dev.schlaubi.forp.analyze.server
 
-import com.uchuhimo.konf.Config
 import com.uchuhimo.konf.Feature
 import com.uchuhimo.konf.source.toml
-import dev.schlaubi.forp.analyze.core.stackTraceAnalyzer
-import dev.schlaubi.forp.analyze.javadoc.useDocDex
+import com.uchuhimo.konf.source.toml.toToml
 import dev.schlaubi.forp.analyze.remote.ForpModule
 import dev.schlaubi.forp.analyze.server.auth.authenticated
 import dev.schlaubi.forp.analyze.server.auth.forp
@@ -12,6 +10,7 @@ import dev.schlaubi.forp.analyze.server.config.ForpConfigSpec
 import dev.schlaubi.forp.analyze.server.converstaion.EventGateway
 import dev.schlaubi.forp.analyze.server.converstaion.conversations
 import dev.schlaubi.forp.analyze.server.errors.installErrorHandler
+import dev.schlaubi.forp.analyze.server.javadoc.javadocs
 import io.ktor.application.*
 import io.ktor.auth.*
 import io.ktor.features.*
@@ -37,18 +36,13 @@ object Application : CoroutineScope {
         serializersModule = ForpModule
     }
 
-    private val konfig = Config {
-        addSpec(ForpConfigSpec)
-        enable(Feature.FAIL_ON_UNKNOWN_PATH)
-        from.toml.file("config.toml")
-    }
-
-    val config = ServerConfig(konfig)
+    val config = dev.schlaubi.forp.analyze.server.config.Config()
 
     val analyzer = config.buildAnalyzer()
 
     val webSocket = EventGateway()
 
+    @Suppress("unused", "UNUSED_PARAMETER")
     @JvmStatic
     @JvmOverloads
     fun KtorApp.module(testing: Boolean = false) {
@@ -69,6 +63,7 @@ object Application : CoroutineScope {
         routing {
             authenticated {
                 conversations()
+                javadocs()
                 with(webSocket) {
                     apply()
                 }

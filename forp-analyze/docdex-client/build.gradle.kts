@@ -35,9 +35,12 @@ kotlin {
         commonMain {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
-                implementation(project.dependencies.platform("io.ktor:ktor-bom:1.5.2"))
+                implementation(project.dependencies.platform("io.ktor:ktor-bom:1.5.4"))
                 implementation("io.ktor:ktor-client-core")
                 implementation("io.ktor:ktor-client-serialization")
+
+                implementation("io.github.microutils:kotlin-logging:1.12.5")
+
                 api(project(":forp-analyze:forp-analyze-api"))
                 api(project(":forp-analyze:docdex-client-api"))
                 compileOnly(project(":forp-analyze:forp-analyze-core"))

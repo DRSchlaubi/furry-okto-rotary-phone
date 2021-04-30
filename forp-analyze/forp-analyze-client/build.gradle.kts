@@ -40,10 +40,12 @@ kotlin {
                 implementation(project.dependencies.platform("io.ktor:ktor-bom:1.5.2"))
                 implementation("io.ktor:ktor-client-core")
                 implementation("io.ktor:ktor-client-serialization")
+                implementation("io.github.microutils:kotlin-logging:1.12.5")
                 implementation("io.github.microutils:kotlin-logging-common:1.12.5")
                 implementation("org.jetbrains.kotlinx:atomicfu:0.15.2")
 
                 api(project(":forp-analyze:forp-analyze-api"))
+
                 api(project(":forp-analyze:forp-analyze-remote-api"))
                 api(project(":forp-analyze:docdex-client-api"))
             }

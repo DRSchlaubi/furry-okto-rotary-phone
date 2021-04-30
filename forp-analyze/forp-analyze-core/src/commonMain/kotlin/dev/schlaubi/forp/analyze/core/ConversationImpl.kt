@@ -6,9 +6,6 @@ import dev.schlaubi.forp.analyze.core.events.JavaDocFoundEventImpl
 import dev.schlaubi.forp.analyze.core.events.SourceFileFoundEventImpl
 import dev.schlaubi.forp.analyze.core.utils.ClassFinder
 import dev.schlaubi.forp.analyze.events.Event
-import dev.schlaubi.forp.analyze.events.ExceptionFoundEvent
-import dev.schlaubi.forp.analyze.events.JavaDocFoundEvent
-import dev.schlaubi.forp.analyze.events.SourceFileFoundEvent
 import dev.schlaubi.forp.analyze.javadoc.DocumentedClassObject
 import dev.schlaubi.forp.fetch.input.Input
 import dev.schlaubi.forp.fetch.processor.Result
@@ -18,6 +15,9 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
+import mu.KotlinLogging
+
+private val LOG = KotlinLogging.logger { }
 
 internal class ConversationImpl(
     private val analyzer: StackTraceAnalyzerImpl,
@@ -32,13 +32,12 @@ internal class ConversationImpl(
 
     override fun consumeNewInput(input: Input) {
         launch {
-            println("fetching")
+            LOG.debug { "Fetching $input" }
             analyzer.fetch(input).forEach {
                 val result = it.result
-                println("Got result")
                 processResult(it)
                 if (result != null) {
-                    println("Processing stacktrace")
+                    LOG.debug { "Processing $result" }
                     processNewException(result)
                 }
             }
@@ -64,8 +63,7 @@ internal class ConversationImpl(
             ) as? DocumentedClassObject
 
             if (doc == null) {
-                println("No doc found for $it")
-                println("Potential: $doc")
+                LOG.debug { "No doc found for $it" }
             } else {
                 eventFlow.emit(JavaDocFoundEventImpl(it, doc))
             }

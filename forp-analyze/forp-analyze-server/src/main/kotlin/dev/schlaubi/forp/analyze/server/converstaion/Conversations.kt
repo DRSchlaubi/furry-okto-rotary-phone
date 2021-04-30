@@ -15,7 +15,6 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
-import java.nio.ByteBuffer
 
 @Location("/conversations")
 class Conversations {
@@ -30,66 +29,66 @@ class Conversations {
 }
 
 fun Route.conversations() {
-    location<Conversations> {
-        post {
-            val (token) = call.forp()
-            val conversation = ConversationManager.new(token)
+    post<Conversations> {
+        val (token) = call.forp()
+        val conversation = ConversationManager.new(token)
 
-            context.respond(RemoteConversationEntity(conversation.id))
-        }
+        context.respond(RemoteConversationEntity(conversation.id))
+    }
 
-        location<Conversations.Conversation> {
-            delete<Conversations.Conversation> { data ->
-                val conversation = ConversationManager.findConversation(data.id)
+    delete<Conversations.Conversation> { data ->
+        val conversation = ConversationManager.findConversation(data.id)
 
-                conversation.forget()
-            }
+        conversation.forget()
+    }
 
-            put<Conversations.Conversation.Sources> { data ->
-                val conversation = ConversationManager.findConversation(data.conversation.id)
-                val (plain, text) = context.receive<RemoteTextInput>()
-                val input = if (plain) text.toPlainInput() else text.toInput()
+    put<Conversations.Conversation.Sources> { data ->
+        val conversation = ConversationManager.findConversation(data.conversation.id)
+        val (plain, text) = context.receive<RemoteTextInput>()
+        val input = if (plain) text.toPlainInput() else text.toInput()
 
-                conversation.consumeNewInput(input)
+        conversation.consumeNewInput(input)
 
-                context.respond(HttpStatusCode.Accepted)
-            }
+        context.respond(HttpStatusCode.Accepted)
+    }
 
-            put<Conversations.Conversation.Files> { data ->
-                val conversation = ConversationManager.findConversation(data.conversation.id)
-                val parts = call.receiveMultipart()
+    put<Conversations.Conversation.Files> { data ->
+        try {
+            val conversation = ConversationManager.findConversation(data.conversation.id)
+            val parts = call.receiveMultipart()
 
-                var file: ByteReadChannel? = null
-                var type: FileInput.FileType? = null
-                parts.forEachPart { part ->
-                    when (part) {
-                        is PartData.FormItem -> {
-                            if (part.name == "type") {
-                                type = FileInput.FileType.valueOf(part.value)
-                            }
+            var file: ByteReadChannel? = null
+            var type: FileInput.FileType? = null
+            parts.forEachPart { part ->
+                println(part)
+                when (part) {
+                    is PartData.FormItem -> {
+                        if (part.name == "type") {
+                            type = FileInput.FileType.valueOf(part.value)
+                        } else if (part.name == "file") {
+                            println(part.value)
                         }
-                        is PartData.FileItem -> {
-                            val reader = ByteBuffer.allocate(part.headers[
-                                    HttpHeaders.ContentLength
-                            ]!!.toInt())
-                            part.provider().readAvailable(reader)
-                            file = ByteReadChannel(reader)
-                        }
-
-                        else -> TODO()
                     }
+                    is PartData.FileItem -> {
+                        val bytes = part.provider().readBytes()
+                        file = ByteReadChannel(bytes)
 
-                    part.dispose()
+                    }
+                    else -> return@forEachPart context.respond(HttpStatusCode.BadRequest, "Unexpected part")
                 }
 
-                if (file == null || type == null) {
-                    TODO()
-                }
-
-                conversation.consumeNewInput(file!!.toInput(type!!))
-
-                context.respond(HttpStatusCode.Accepted)
+                part.dispose()
             }
+
+            if (file == null || type == null) {
+                return@put context.respond(HttpStatusCode.BadRequest, "Missing file or type")
+            }
+
+            conversation.consumeNewInput(file!!.toInput(type!!))
+
+            context.respond(HttpStatusCode.Accepted)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 }
