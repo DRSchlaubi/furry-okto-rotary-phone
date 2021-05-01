@@ -1,11 +1,9 @@
 import dev.schlaubi.forp.analyze.client.RemoteStackTraceAnalyzer
-import dev.schlaubi.forp.analyze.client.RemoteStackTraceAnalyzerBuilder
 import dev.schlaubi.forp.analyze.events.Event
 import dev.schlaubi.forp.analyze.javadoc.awaitReady
 import dev.schlaubi.forp.analyze.on
 import dev.schlaubi.forp.fetch.input.FileInput
 import dev.schlaubi.forp.fetch.input.toInput
-import io.ktor.http.*
 import kotlinx.coroutines.delay
 import kotlin.time.ExperimentalTime
 import kotlin.time.minutes
