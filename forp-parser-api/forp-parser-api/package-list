@@ -1,0 +1,48 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace////PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/CausedStackTrace///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-caused-stack-trace/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/CausedStackTrace/parent/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-caused-stack-trace/parent.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultQualifiedMethod///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-qualified-method/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultQualifiedMethod/methodName/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-qualified-method/method-name.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultStackTraceElement.FileSource///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-stack-trace-element/-file-source/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultStackTraceElement.FileSource/fileName/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-stack-trace-element/-file-source/file-name.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultStackTraceElement.FileSource/lineNumber/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-stack-trace-element/-file-source/line-number.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultStackTraceElement.InvalidSource///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-stack-trace-element/-invalid-source/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultStackTraceElement.NativeSource///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-stack-trace-element/-native-source/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultStackTraceElement.Source///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-stack-trace-element/-source/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultStackTraceElement.SourceFile///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-stack-trace-element/-source-file/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultStackTraceElement.SourceFile/file/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-stack-trace-element/-source-file/file.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultStackTraceElement.SourceFile/fileIsApproximation/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-stack-trace-element/-source-file/file-is-approximation.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultStackTraceElement.SourceFile/knowsFile/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-stack-trace-element/-source-file/knows-file.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultStackTraceElement.SourceFile/version/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-stack-trace-element/-source-file/version.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultStackTraceElement.UnknownSource///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-stack-trace-element/-unknown-source/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultStackTraceElement///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-stack-trace-element/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultStackTraceElement/file/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-stack-trace-element/file.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultStackTraceElement/method/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-stack-trace-element/method.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/DefaultStackTraceElement/source/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-default-stack-trace-element/source.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/EllipsisStackTraceElement///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-ellipsis-stack-trace-element/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/EllipsisStackTraceElement/skipped/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-ellipsis-stack-trace-element/skipped.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/InvalidQualifiedMethod///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-invalid-qualified-method/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/InvalidStackTraceElement///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-invalid-stack-trace-element/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/Lambda///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-lambda/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/Lambda/name/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-lambda/name.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/QualifiedClass///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-qualified-class/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/QualifiedClass/className/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-qualified-class/class-name.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/QualifiedClass/innerClassName/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-qualified-class/inner-class-name.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/QualifiedClass/innerClasses/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-qualified-class/inner-classes.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/QualifiedClass/isInnerClass/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-qualified-class/is-inner-class.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/QualifiedClass/packagePath/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-qualified-class/package-path.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/QualifiedConstructor///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-qualified-constructor/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/QualifiedMethod///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-qualified-method/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/QualifiedMethod/class/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-qualified-method/class.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/QualifiedMethod/clazz/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-qualified-method/clazz.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/RootStackTrace///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-root-stack-trace/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/RootStackTrace/children/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-root-stack-trace/children.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/StackTrace///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-stack-trace/index.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/StackTrace/elements/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-stack-trace/elements.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/StackTrace/exception/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-stack-trace/exception.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/StackTrace/message/#/PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-stack-trace/message.html
+$dokka.location:dev.schlaubi.forp.parser.stacktrace/StackTraceElement///PointingToDeclaration/forp-parser-api/dev.schlaubi.forp.parser.stacktrace/-stack-trace-element/index.html
+dev.schlaubi.forp.parser.stacktrace
+
