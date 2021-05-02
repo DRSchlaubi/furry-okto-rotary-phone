@@ -8,7 +8,7 @@ import dev.schlaubi.forp.analyze.server.config.Config
 import dev.schlaubi.forp.fetch.processor.*
 
 fun Config.buildAnalyzer(): StackTraceAnalyzer = stackTraceAnalyzer {
-    useDocDex(null, docs.docdexUrl)
+    useDocDex(url = docs.docdexUrl)
     fetcher {
         if (inputs.strings) {
             +PlainStringProcessor()
@@ -40,7 +40,7 @@ fun Config.buildAnalyzer(): StackTraceAnalyzer = stackTraceAnalyzer {
             addHttpFetcher {
                 HastebinProcessor(
                     it,
-                    inputs.hastebinUrls!!
+                    inputs.hastebinUrls
                 )
             }
         }
@@ -52,6 +52,12 @@ fun Config.buildAnalyzer(): StackTraceAnalyzer = stackTraceAnalyzer {
         if (inputs.pasty) {
             addHttpFetcher {
                 PastyProcessor(it)
+            }
+        }
+
+        if (inputs.mclogs) {
+            addHttpFetcher {
+                McLogsProcessor(it)
             }
         }
     }

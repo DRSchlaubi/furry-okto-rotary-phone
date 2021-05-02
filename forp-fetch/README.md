@@ -24,6 +24,7 @@ Repository information: https://github.com/DRSchlaubi/furry-okto-rotary-phone#do
 - [Pastebin](https://www.pastebin.com)
 - [Ghostbin](https://ghostbin.co)
 - [mclo.gs](https://mclo.gs)
+- [pasty](https://paste.pelkum.dev)
 - Images (Using [GCP Vision](https://cloud.google.com/vision) (JVM only))
 
 # Docs

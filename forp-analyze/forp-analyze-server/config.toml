@@ -6,9 +6,10 @@ strings = true
 files = true
 githubGist = true
 pastebin = true
+hastebin_urls = ["pasta.with-rice.by.devs-from.asia"]
 ghostbin = true
 pasty = true
-images = false
+images = true
 
 [auth]
 keys = ["apple-is-shit"]

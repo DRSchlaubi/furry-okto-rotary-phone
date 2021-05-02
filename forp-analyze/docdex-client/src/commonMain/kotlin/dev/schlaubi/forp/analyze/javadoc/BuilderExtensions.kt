@@ -39,7 +39,7 @@ public fun StackTraceAnalyzerBuilder.useDocDex(
 public fun StackTraceAnalyzerBuilder.useDocDex(
     httpClientEngine: HttpClientEngine? = null,
     url: Url,
-    vararg ignoreDocs: String,
+    vararg ignoreDocs: String
 ): StackTraceAnalyzerBuilder {
     val configure: HttpClientConfig<*>.() -> Unit = {
         val json = kotlinx.serialization.json.Json {

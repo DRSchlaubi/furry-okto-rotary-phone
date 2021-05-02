@@ -1,12 +1,8 @@
 package dev.schlaubi.forp.analyze.server
 
-import com.uchuhimo.konf.Feature
-import com.uchuhimo.konf.source.toml
-import com.uchuhimo.konf.source.toml.toToml
 import dev.schlaubi.forp.analyze.remote.ForpModule
 import dev.schlaubi.forp.analyze.server.auth.authenticated
 import dev.schlaubi.forp.analyze.server.auth.forp
-import dev.schlaubi.forp.analyze.server.config.ForpConfigSpec
 import dev.schlaubi.forp.analyze.server.converstaion.EventGateway
 import dev.schlaubi.forp.analyze.server.converstaion.conversations
 import dev.schlaubi.forp.analyze.server.errors.installErrorHandler
@@ -22,8 +18,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.serialization.json.Json
+import org.slf4j.LoggerFactory
+import org.slf4j.event.Level
 import kotlin.coroutines.CoroutineContext
-import dev.schlaubi.forp.analyze.server.config.Config as ServerConfig
 import io.ktor.application.Application as KtorApp
 
 fun main(args: Array<String>) = io.ktor.server.netty.EngineMain.main(args)
@@ -53,6 +50,10 @@ object Application : CoroutineScope {
         install(Locations)
         install(WebSockets)
         install(DefaultHeaders)
+        install(CallLogging) {
+            logger = LoggerFactory.getLogger("RequestLogger")
+            level = Level.DEBUG
+        }
 
         install(Authentication) {
             forp()

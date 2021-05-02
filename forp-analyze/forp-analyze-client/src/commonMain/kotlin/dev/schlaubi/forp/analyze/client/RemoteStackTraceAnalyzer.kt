@@ -33,7 +33,7 @@ internal class RemoteStackTraceAnalyzer(
     }
 
     override suspend fun close() {
-        restResources.httpClient.close()
         websocket.close()
+        restResources.httpClient.close()
     }
 }

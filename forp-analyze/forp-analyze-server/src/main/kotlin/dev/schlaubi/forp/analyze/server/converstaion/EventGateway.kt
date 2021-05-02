@@ -33,6 +33,8 @@ class EventGateway {
 
             sessions[token] = this
 
+            LOG.debug { "New connection: $this" }
+
             for (frame in incoming) {
                 LOG.debug { "Received $frame" }
             }

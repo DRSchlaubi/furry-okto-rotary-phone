@@ -5,7 +5,7 @@ analyzing JVM exception stacktraces
 
 # Status
 
-Not done LOL
+Feature complete (for now)
 
 # Contents
 

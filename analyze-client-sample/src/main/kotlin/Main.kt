@@ -28,4 +28,5 @@ suspend fun main() {
     convo.forget()
     delay(10.seconds)
     client.close()
+    println()
 }

@@ -61,7 +61,7 @@ kotlin {
 
             dependencies {
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.4.3")
-                implementation(project.dependencies.platform("com.google.cloud:libraries-bom:19.2.1"))
+                implementation(project.dependencies.platform("com.google.cloud:libraries-bom:20.1.0"))
                 implementation("com.google.cloud:google-cloud-vision")
                 implementation("io.ktor:ktor-client-okhttp")
             }

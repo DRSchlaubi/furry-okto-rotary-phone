@@ -1,0 +1,26 @@
+name: Server CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Publish Docker image
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.commits[0].message, '[skip ci]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: Login
+        env:
+          GITHUB_TOKEN: ${{ secrets.WHATEVER }}
+        run:  docker login ghcr.io --username phanatic --password "$GITHUB_TOKEN"
+      - name: Build & Tag
+        run:  docker build -t ghcr.io/DRSchlaubi/furry-okto-rotary-phone/server:latest -t ghcr.io/bankobotv14/bankobotserver:"$GITHUB_SHA" .
+      - name: Push
+        run:  docker push ghcr.io/DRSchlaubi/furry-okto-rotary-phone/server:latest
+      - name: Push specific tag
+        run: docker push ghcr.io/DRSchlaubi/furry-okto-rotary-phone/server:"$GITHUB_SHA"

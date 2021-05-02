@@ -5,7 +5,13 @@ import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*
 import io.ktor.response.*
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.descriptors.PrimitiveKind
+import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
+import kotlinx.serialization.descriptors.SerialDescriptor
+import kotlinx.serialization.encoding.Decoder
+import kotlinx.serialization.encoding.Encoder
 
 fun Application.installErrorHandler() {
     install(StatusPages) {
@@ -42,4 +48,16 @@ private fun StatusPages.Configuration.authentication() {
 private suspend fun ApplicationCall.respondError(error: Error) = respond(error.status, error)
 
 @Serializable
-data class Error(val status: HttpStatusCode, val description: String?)
+data class Error(
+    @Serializable(with = HttpStatusCodeSerializer::class)
+    val status: HttpStatusCode, val description: String?
+)
+
+object HttpStatusCodeSerializer : KSerializer<HttpStatusCode> {
+    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("code", PrimitiveKind.INT)
+
+    override fun deserialize(decoder: Decoder): HttpStatusCode = HttpStatusCode.fromValue(decoder.decodeInt())
+
+    override fun serialize(encoder: Encoder, value: HttpStatusCode) = encoder.encodeInt(value.value)
+
+}

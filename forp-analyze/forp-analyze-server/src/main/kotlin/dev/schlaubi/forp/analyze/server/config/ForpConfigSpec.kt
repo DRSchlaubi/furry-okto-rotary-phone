@@ -16,6 +16,7 @@ object ForpConfigSpec : ConfigSpec("") {
         val ghostbin by optional(false)
         val hastebinUrls by optional<List<String>>(emptyList())
         val pasty by optional(false)
+        val mclogs by optional(false)
         val images by optional(false)
     }
 

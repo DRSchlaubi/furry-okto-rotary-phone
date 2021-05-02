@@ -11,6 +11,7 @@ import io.ktor.utils.io.*
 import io.ktor.utils.io.jvm.javaio.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 /**
  * Exception thrown in case an error occurs whilst reading an image.
@@ -18,7 +19,7 @@ import kotlinx.coroutines.withContext
  * @property error the [com.google.rpc.Status] we got indicating the error
  */
 public class ImageReadingError(message: String, public val error: com.google.rpc.Status) :
-    RuntimeException(message)
+    RuntimeException(message + error)
 
 /**
  * Implementation of [InputProcessor] which uses an [ImageAnnotatorClient] to convert the image
@@ -49,8 +50,11 @@ public class ImageFileProcessor(private val client: ImageAnnotatorClient) :
             .setImage(image)
             .build()
 
-        val response = withContext(Dispatchers.IO) {
+        val response = try {
             client.batchAnnotateImages(listOf(request)).responsesList.first()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            throw e
         }
 
         if (response.hasError()) {

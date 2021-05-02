@@ -13,8 +13,12 @@ import io.ktor.locations.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import io.ktor.util.*
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
+import kotlin.io.path.ExperimentalPathApi
+import kotlin.io.path.Path
+import kotlin.io.path.writeBytes
 
 @Location("/conversations")
 class Conversations {
@@ -28,6 +32,7 @@ class Conversations {
     }
 }
 
+@OptIn(ExperimentalPathApi::class)
 fun Route.conversations() {
     post<Conversations> {
         val (token) = call.forp()
@@ -40,6 +45,8 @@ fun Route.conversations() {
         val conversation = ConversationManager.findConversation(data.id)
 
         conversation.forget()
+
+        context.respond(HttpStatusCode.Accepted)
     }
 
     put<Conversations.Conversation.Sources> { data ->
@@ -60,7 +67,6 @@ fun Route.conversations() {
             var file: ByteReadChannel? = null
             var type: FileInput.FileType? = null
             parts.forEachPart { part ->
-                println(part)
                 when (part) {
                     is PartData.FormItem -> {
                         if (part.name == "type") {
@@ -71,6 +77,7 @@ fun Route.conversations() {
                     }
                     is PartData.FileItem -> {
                         val bytes = part.provider().readBytes()
+                        Path("test.png").writeBytes(bytes)
                         file = ByteReadChannel(bytes)
 
                     }

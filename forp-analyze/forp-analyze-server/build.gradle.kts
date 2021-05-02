@@ -1,13 +1,12 @@
 plugins {
     application
     kotlin("jvm")
+    kotlin("plugin.serialization") version "1.4.32"
 }
 
 group = "dev.schlaubi.forp"
 version = "0.0.1"
-application {
-    mainClass.set("io.ktor.server.netty.EngineMain")
-}
+
 
 repositories {
     mavenCentral()
@@ -46,4 +45,8 @@ tasks {
                 freeCompilerArgs + "-Xopt-in=io.ktor.locations.KtorExperimentalLocationsAPI"
         }
     }
+}
+
+application {
+    mainClass.set("io.ktor.server.netty.EngineMain")
 }

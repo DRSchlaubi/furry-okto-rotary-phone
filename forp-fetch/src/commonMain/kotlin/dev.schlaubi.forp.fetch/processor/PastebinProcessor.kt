@@ -7,9 +7,9 @@ import io.ktor.http.*
  * Implementation of [PasteServerProcessor] for [pastebin.com](https://www.pastebin.com/)
  */
 public class PastebinProcessor(client: HttpClient) : PasteServerProcessor(client) {
-    // https://regex101.com/r/N8NBDz/2
+    // https://regex101.com/r/N8NBDz/3
     override val regex: Regex =
-        """(?:https?://(?:www\.)?)?pastebin\.com/(?:raw/)?(.+?(?=\.|$|/|#))""".toRegex()
+        """(?:https?://(?:www\.)?)?pastebin\.com/(?:raw/)?(.+?(?=\s|\$|/|#))""".toRegex()
 
     override fun MatchResult.convertToRawUrl(): Url {
         val (key) = destructured

@@ -27,10 +27,10 @@ public class FetcherExample {
         .build();
 
     fromImage(fetcher);
-    fromString(fetcher);
-    fromStream(fetcher);
-    fromPath(fetcher);
-    fromHastebin(fetcher);
+//    fromString(fetcher);
+//    fromStream(fetcher);
+//    fromPath(fetcher);
+//    fromHastebin(fetcher);
 
     googleClient.close();
     fetcher.close();
