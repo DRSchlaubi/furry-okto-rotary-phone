@@ -117,7 +117,7 @@ private fun LowLevelParser.MethodFileDefinitionContext.toAPI(): ParsedDefaultSta
     val file = findClassFile()
     fun toSource(sourceFile: LowLevelParser.SourceFileContext): ParsedDefaultStackTraceElement.ParsedSource {
         val fileName = sourceFile.findSourceFileName().nn().text
-        val line = sourceFile.findLineNumber().nn().text.toIntOrNull() ?: -1
+        val line = sourceFile.findLineNumber()?.text?.toIntOrNull() ?: -1
 
         return ParsedDefaultStackTraceElement.ParsedFileSource(this, fileName, line)
     }
