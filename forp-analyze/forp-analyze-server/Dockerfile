@@ -2,7 +2,7 @@ FROM adoptopenjdk/openjdk15-openj9 as builder
 
 COPY . .
 
-RUN ./gradlew --no-daemon forp-analyze:forp-analyze-serber:installDist
+RUN ./gradlew --no-daemon forp-analyze:forp-analyze-server:installDist
 
 FROM adoptopenjdk/openjdk15-openj9
 

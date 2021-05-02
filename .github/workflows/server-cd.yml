@@ -19,7 +19,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.WHATEVER }}
         run:  docker login ghcr.io --username phanatic --password "$GITHUB_TOKEN"
       - name: Build & Tag
-        run:  docker build -t ghcr.io/drschlaubi/furry-okto-rotary-phone/server:latest -t ghcr.io/drschlaubi/furry-okto-rotary-phone/server:"$GITHUB_SHA" .
+        run:  docker build -t ghcr.io/drschlaubi/furry-okto-rotary-phone/server:latest -t ghcr.io/drschlaubi/furry-okto-rotary-phone/server:"$GITHUB_SHA" . --file ./forp-analyze/forp-analyze-server/Dockerfile
       - name: Push
         run:  docker push ghcr.io/drschlaubi/furry-okto-rotary-phone/server:latest
       - name: Push specific tag
