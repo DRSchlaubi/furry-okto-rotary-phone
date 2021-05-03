@@ -41,7 +41,9 @@ public object StackTraceFinder {
             val stackTrace = StackTraceParser.parse(currentInput)
             currentEnd = currentStart + 1 + stackTrace.context.stop!!.stopIndex
             lastStart = currentStart
-            stackTraces.add(stackTrace)
+            if (stackTrace.elements.isNotEmpty()) {
+                stackTraces.add(stackTrace)
+            }
         }
 
         return stackTraces.toList()
