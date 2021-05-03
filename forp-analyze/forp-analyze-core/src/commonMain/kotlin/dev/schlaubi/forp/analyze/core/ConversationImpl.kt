@@ -11,6 +11,7 @@ import dev.schlaubi.forp.fetch.input.Input
 import dev.schlaubi.forp.fetch.processor.Result
 import dev.schlaubi.forp.parser.stacktrace.RootStackTrace
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -31,7 +32,7 @@ internal class ConversationImpl(
     override val events: SharedFlow<Event> = eventFlow.asSharedFlow()
 
     override fun consumeNewInput(input: Input) {
-        launch {
+        GlobalScope.launch {
             LOG.debug { "Fetching $input" }
             analyzer.fetch(input).forEach {
                 val result = it.result

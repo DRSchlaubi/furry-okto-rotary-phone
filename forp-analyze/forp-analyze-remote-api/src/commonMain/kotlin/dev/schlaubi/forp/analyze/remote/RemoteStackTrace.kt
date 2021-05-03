@@ -19,7 +19,11 @@ internal fun StackTrace.serializable(): RemoteStackTrace {
             exception,
             message,
             elements,
-            children.map { it.serializable(exception, elements) }
+            children.map {
+                it.serializable(
+                    it.exception.serializable(),
+                    it.elements.map { stackTraceElement -> stackTraceElement.serializable() })
+            }
         )
 
         else -> error("Unknown stack trace element $this (${this::class.simpleName})")

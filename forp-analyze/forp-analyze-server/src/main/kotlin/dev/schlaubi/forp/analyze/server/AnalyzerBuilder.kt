@@ -9,6 +9,7 @@ import dev.schlaubi.forp.fetch.processor.*
 
 fun Config.buildAnalyzer(): StackTraceAnalyzer = stackTraceAnalyzer {
     useDocDex(url = docs.docdexUrl)
+
     fetcher {
         if (inputs.strings) {
             +PlainStringProcessor()
