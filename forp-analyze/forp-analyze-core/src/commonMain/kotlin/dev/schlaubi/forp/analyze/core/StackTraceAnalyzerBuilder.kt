@@ -6,7 +6,7 @@ import dev.schlaubi.forp.fetch.StackTraceFetcher
 import dev.schlaubi.forp.fetch.StackTraceFetcherBuilder
 import dev.schlaubi.forp.fetch.stackTraceFetcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlin.coroutines.CoroutineContext
 import kotlin.jvm.JvmName
 
@@ -30,7 +30,7 @@ public abstract class AbstractStackTraceAnalyzerBuilder {
 
     public var javaDocCache: JavaDocCache? = null
 
-    public open var coroutineDispatcher: CoroutineContext = Dispatchers.Default + Job()
+    public open var coroutineDispatcher: CoroutineContext = Dispatchers.Default + SupervisorJob()
 
     /**
      * Shortcut to fetcher = [stackTraceFetcher].

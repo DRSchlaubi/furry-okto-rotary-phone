@@ -16,7 +16,7 @@ import io.ktor.serialization.*
 import io.ktor.websocket.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.serialization.json.Json
 import org.slf4j.LoggerFactory
 import org.slf4j.event.Level
@@ -27,7 +27,7 @@ fun main(args: Array<String>) = io.ktor.server.netty.EngineMain.main(args)
 
 object Application : CoroutineScope {
 
-    override val coroutineContext: CoroutineContext = Dispatchers.IO + Job()
+    override val coroutineContext: CoroutineContext = Dispatchers.IO + SupervisorJob()
 
     val json = Json {
         serializersModule = ForpModule
