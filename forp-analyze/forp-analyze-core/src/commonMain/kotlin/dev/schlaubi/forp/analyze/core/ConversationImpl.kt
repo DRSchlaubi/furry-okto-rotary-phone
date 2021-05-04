@@ -32,7 +32,7 @@ internal class ConversationImpl(
     override val events: SharedFlow<Event> = eventFlow.asSharedFlow()
 
     override fun consumeNewInput(input: Input) {
-        GlobalScope.launch {
+        launch {
             LOG.debug { "Fetching $input" }
             analyzer.fetch(input).forEach {
                 val result = it.result
