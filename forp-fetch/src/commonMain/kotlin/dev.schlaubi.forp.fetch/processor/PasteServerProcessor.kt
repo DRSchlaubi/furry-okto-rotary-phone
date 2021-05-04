@@ -26,9 +26,11 @@ public abstract class PasteServerProcessor(private val client: HttpClient) :
     override fun supports(input: Input): Boolean = input is StringInput
 
     override fun processInput(input: StringInput): List<Url> {
-        return regex.findAll(input.input).map {
+        val x = regex.findAll(input.input).map {
             it.convertToRawUrl()
         }.toList()
+
+        return x
     }
 
     override suspend fun fetchInput(data: List<Url>): List<String> =
