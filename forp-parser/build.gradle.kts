@@ -25,11 +25,18 @@ repositories {
 }
 
 kotlin {
+    targets.all {
+        compilations.all {
+            kotlinOptions {
+                suppressWarnings = true
+            }
+        }
+    }
+    
     jvm {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "11"
-                useIR = true
             }
         }
     }

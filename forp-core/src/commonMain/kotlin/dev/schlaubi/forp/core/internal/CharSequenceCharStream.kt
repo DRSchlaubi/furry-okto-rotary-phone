@@ -30,7 +30,7 @@ private class CharSequenceCharStream(
                     IntStream.EOF
                 }
             } else {
-                char.toInt()
+                char.code
             }
         } else {
             IntStream.EOF
@@ -97,5 +97,5 @@ internal fun CharSequence.codePointIndices(): IntArray {
 }
 
 private fun toCodePoint(high: Char, low: Char): Int {
-    return high.toInt().shl(10) + low.toInt() + -56613888
+    return high.code.shl(10) + low.code + -56613888
 }

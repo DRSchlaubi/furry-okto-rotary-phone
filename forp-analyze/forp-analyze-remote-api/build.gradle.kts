@@ -30,13 +30,15 @@ kotlin {
             repositories {
                 maven("https://schlaubi.jfrog.io/artifactory/forp/")
             }
+
+            languageSettings.useExperimentalAnnotation("kotlin.RequiresOptIn")
         }
 
         commonMain {
             dependencies {
                 api(project(":forp-analyze:forp-analyze-api"))
                 api(project(":forp-analyze:docdex-client-api"))
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
             }
         }
 

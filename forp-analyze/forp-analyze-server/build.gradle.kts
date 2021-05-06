@@ -42,7 +42,7 @@ tasks {
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions {
             freeCompilerArgs =
-                freeCompilerArgs + "-Xopt-in=io.ktor.locations.KtorExperimentalLocationsAPI"
+                freeCompilerArgs + "-Xopt-in=io.ktor.locations.KtorExperimentalLocationsAPI" + "-Xopt-in=kotlin.RequiresOptIn"
         }
     }
 }

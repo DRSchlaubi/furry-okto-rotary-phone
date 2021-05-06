@@ -1,14 +1,14 @@
 package dev.schlaubi.forp.analyze.client.retry
 
+//import mu.KotlinLogging
 import kotlinx.atomicfu.atomic
 import kotlinx.atomicfu.update
 import kotlinx.coroutines.delay
-//import mu.KotlinLogging
+import mu.KotlinLogging
 import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
-import kotlin.time.seconds
 
-//private val LOG = KotlinLogging.logger { }
+private val LOG = KotlinLogging.logger { }
 
 /**
  * A linear [Retry] strategy.
@@ -18,17 +18,17 @@ import kotlin.time.seconds
  */
 @OptIn(ExperimentalTime::class)
 internal class LinearRetry constructor(
-    private val firstBackoff: Duration = 5.seconds,
-    private val maxBackoff: Duration = 60.seconds,
+    private val firstBackoff: Duration = Duration.seconds(5),
+    private val maxBackoff: Duration = Duration.seconds(60),
     private val maxTries: Int = 10,
 ) : Retry {
 
     init {
-        require(firstBackoff.isPositive()) { "firstBackoff needs to be positive but was ${firstBackoff.toLongMilliseconds()} ms" }
-        require(maxBackoff.isPositive()) { "maxBackoff needs to be positive but was ${maxBackoff.toLongMilliseconds()} ms" }
+        require(firstBackoff.isPositive()) { "firstBackoff needs to be positive but was ${firstBackoff.inWholeMilliseconds} ms" }
+        require(maxBackoff.isPositive()) { "maxBackoff needs to be positive but was ${maxBackoff.inWholeMilliseconds} ms" }
         require(
             maxBackoff.minus(firstBackoff).isPositive()
-        ) { "maxBackoff ${maxBackoff.toLongMilliseconds()} ms needs to be bigger than firstBackoff ${firstBackoff.toLongMilliseconds()} ms" }
+        ) { "maxBackoff ${maxBackoff.inWholeMilliseconds} ms needs to be bigger than firstBackoff ${firstBackoff.inWholeMilliseconds} ms" }
         require(maxTries > 0) { "maxTries needs to be positive but was $maxTries" }
     }
 
@@ -44,9 +44,9 @@ internal class LinearRetry constructor(
     override suspend fun retry() {
         if (!hasNext) error("max retries exceeded")
 
-        var diff = (maxBackoff - firstBackoff).toLongMilliseconds() / maxTries
+        var diff = (maxBackoff - firstBackoff).inWholeMilliseconds / maxTries
         diff *= tries.incrementAndGet()
-//        LOG.info { "retry attempt ${tries.value}/$maxTries, delaying for $diff ms." }
+        LOG.info { "retry attempt ${tries.value}/$maxTries, delaying for $diff ms." }
         delay(diff)
     }
 }

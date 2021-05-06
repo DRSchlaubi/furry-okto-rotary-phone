@@ -49,7 +49,7 @@ kotlin {
                 api(project(":forp-find"))
                 api("io.ktor:ktor-io")
                 api("io.ktor:ktor-client-core")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
                 api("io.ktor:ktor-client-serialization")
             }
         }

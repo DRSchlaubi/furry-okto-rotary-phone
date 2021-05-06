@@ -63,15 +63,14 @@ public open class Snowflake {
 
     // Get current timestamp in milliseconds, adjust for the custom epoch.
     private fun timestamp(): Long {
-        return 0L
         return Clock.System.now().toEpochMilliseconds() - customEpoch
     }
 
     // Block and wait till next millisecond
     private fun waitNextMillis(currentTimestamp: Long): Long {
-        var currentTimestamp = currentTimestamp
-        while (currentTimestamp == lastTimestamp) {
-            currentTimestamp = timestamp()
+        var current = currentTimestamp
+        while (current == lastTimestamp) {
+            current = timestamp()
         }
         return currentTimestamp
     }

@@ -5,6 +5,7 @@ import dev.schlaubi.forp.analyze.on
 import dev.schlaubi.forp.fetch.input.FileInput
 import dev.schlaubi.forp.fetch.input.toInput
 import kotlinx.coroutines.delay
+import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
 import kotlin.time.minutes
 import kotlin.time.seconds
@@ -24,9 +25,9 @@ suspend fun main() {
     convo.consumeNewInput(ClassLoader.getSystemResourceAsStream("test2.txt")!!.toInput(FileInput.FileType.PLAIN_TEXT))
     convo.on<Event> { println(this) }
 
-    delay(1.minutes)
+    delay(Duration.minutes(1))
     convo.forget()
-    delay(10.seconds)
+    delay(Duration.seconds(10))
     client.close()
     println()
 }

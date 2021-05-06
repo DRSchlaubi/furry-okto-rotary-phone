@@ -1,6 +1,6 @@
 plugins {
     kotlin("multiplatform")
-    id("kotlinx-atomicfu") version "0.15.2"
+    id("kotlinx-atomicfu") version "0.16.1"
     id("org.jetbrains.dokka")
 }
 
@@ -34,8 +34,9 @@ kotlin {
             repositories {
                 maven("https://schlaubi.jfrog.io/artifactory/forp/")
                 mavenCentral()
-                jcenter()
             }
+
+            languageSettings.useExperimentalAnnotation("kotlin.RequiresOptIn")
         }
 
         commonMain {

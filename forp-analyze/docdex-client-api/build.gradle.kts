@@ -35,7 +35,7 @@ kotlin {
 
         commonMain {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
                 implementation(project(":forp-analyze:forp-analyze-api"))
             }
         }
