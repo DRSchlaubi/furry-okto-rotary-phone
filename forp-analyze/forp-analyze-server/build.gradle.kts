@@ -21,7 +21,7 @@ dependencies {
     implementation("io.ktor", "ktor-locations")
     implementation("io.ktor", "ktor-serialization")
     implementation("io.ktor", "ktor-websockets")
-    implementation("io.ktor", "ktor-server-netty")
+    implementation("io.ktor", "ktor-server-cio")
     implementation("ch.qos.logback", "logback-classic", "1.2.3")
     implementation("io.github.microutils", "kotlin-logging", "1.12.5")
 

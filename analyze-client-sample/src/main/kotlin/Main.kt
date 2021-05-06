@@ -25,9 +25,9 @@ suspend fun main() {
     convo.consumeNewInput(ClassLoader.getSystemResourceAsStream("test2.txt")!!.toInput(FileInput.FileType.PLAIN_TEXT))
     convo.on<Event> { println(this) }
 
-    delay(Duration.minutes(1))
+    delay(Duration.minutes(1).inWholeMilliseconds)
     convo.forget()
-    delay(Duration.seconds(10))
+    delay(Duration.seconds(10).inWholeMilliseconds)
     client.close()
     println()
 }

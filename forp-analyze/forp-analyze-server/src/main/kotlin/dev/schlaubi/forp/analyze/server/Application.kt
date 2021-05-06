@@ -23,7 +23,7 @@ import org.slf4j.event.Level
 import kotlin.coroutines.CoroutineContext
 import io.ktor.application.Application as KtorApp
 
-fun main(args: Array<String>) = io.ktor.server.netty.EngineMain.main(args)
+fun main(args: Array<String>) = io.ktor.server.cio.EngineMain.main(args)
 
 object Application : CoroutineScope {
 
