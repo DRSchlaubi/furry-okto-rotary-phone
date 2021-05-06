@@ -48,5 +48,5 @@ tasks {
 }
 
 application {
-    mainClass.set("io.ktor.server.netty.EngineMain")
+    mainClass.set("dev.schlaubi.forp.analyze.server.ApplicationKt")
 }
