@@ -73,6 +73,15 @@ $dokka.location:dev.schlaubi.forp.fetch.processor/JavaMultiInputProcessor/JavaMu
 $dokka.location:dev.schlaubi.forp.fetch.processor/McLogsProcessor///PointingToDeclaration/forp-fetch/dev.schlaubi.forp.fetch.processor/-mc-logs-processor/index.html
 $dokka.location:dev.schlaubi.forp.fetch.processor/McLogsProcessor/McLogsProcessor/#io.ktor.client.HttpClient/PointingToDeclaration/forp-fetch/dev.schlaubi.forp.fetch.processor/-mc-logs-processor/-mc-logs-processor.html
 $dokka.location:dev.schlaubi.forp.fetch.processor/MultiInputProcessor///PointingToDeclaration/forp-fetch/dev.schlaubi.forp.fetch.processor/-multi-input-processor/index.html
+$dokka.location:dev.schlaubi.forp.fetch.processor/Paste///PointingToDeclaration/forp-fetch/dev.schlaubi.forp.fetch.processor/-paste/index.html
+$dokka.location:dev.schlaubi.forp.fetch.processor/Paste/Paste/#kotlin.String#kotlin.String/PointingToDeclaration/forp-fetch/dev.schlaubi.forp.fetch.processor/-paste/-paste.html
+$dokka.location:dev.schlaubi.forp.fetch.processor/Paste/id/#/PointingToDeclaration/forp-fetch/dev.schlaubi.forp.fetch.processor/-paste/id.html
+$dokka.location:dev.schlaubi.forp.fetch.processor/Paste/user/#/PointingToDeclaration/forp-fetch/dev.schlaubi.forp.fetch.processor/-paste/user.html
+$dokka.location:dev.schlaubi.forp.fetch.processor/PasteGGProcessor///PointingToDeclaration/forp-fetch/dev.schlaubi.forp.fetch.processor/-paste-g-g-processor/index.html
+$dokka.location:dev.schlaubi.forp.fetch.processor/PasteGGProcessor/PasteGGProcessor/#io.ktor.client.HttpClient/PointingToDeclaration/forp-fetch/dev.schlaubi.forp.fetch.processor/-paste-g-g-processor/-paste-g-g-processor.html
+$dokka.location:dev.schlaubi.forp.fetch.processor/PasteGGProcessor/fetchInput/#kotlin.collections.List[dev.schlaubi.forp.fetch.processor.Paste]/PointingToDeclaration/forp-fetch/dev.schlaubi.forp.fetch.processor/-paste-g-g-processor/fetch-input.html
+$dokka.location:dev.schlaubi.forp.fetch.processor/PasteGGProcessor/processInput/#dev.schlaubi.forp.fetch.input.StringInput/PointingToDeclaration/forp-fetch/dev.schlaubi.forp.fetch.processor/-paste-g-g-processor/process-input.html
+$dokka.location:dev.schlaubi.forp.fetch.processor/PasteGGProcessor/supports/#dev.schlaubi.forp.fetch.input.Input/PointingToDeclaration/forp-fetch/dev.schlaubi.forp.fetch.processor/-paste-g-g-processor/supports.html
 $dokka.location:dev.schlaubi.forp.fetch.processor/PasteServerProcessor///PointingToDeclaration/forp-fetch/dev.schlaubi.forp.fetch.processor/-paste-server-processor/index.html
 $dokka.location:dev.schlaubi.forp.fetch.processor/PasteServerProcessor/PasteServerProcessor/#io.ktor.client.HttpClient/PointingToDeclaration/forp-fetch/dev.schlaubi.forp.fetch.processor/-paste-server-processor/-paste-server-processor.html
 $dokka.location:dev.schlaubi.forp.fetch.processor/PasteServerProcessor/fetchInput/#kotlin.collections.List[io.ktor.http.Url]/PointingToDeclaration/forp-fetch/dev.schlaubi.forp.fetch.processor/-paste-server-processor/fetch-input.html
