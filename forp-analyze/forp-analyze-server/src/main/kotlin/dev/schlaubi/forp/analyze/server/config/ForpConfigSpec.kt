@@ -18,6 +18,7 @@ object ForpConfigSpec : ConfigSpec("") {
         val pasty by optional(false)
         val mclogs by optional(false)
         val images by optional(false)
+        val pastegg by optional(false)
     }
 
     object Auth : ConfigSpec("auth") {

@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("io.ktor:ktor-bom:1.5.4"))
+    implementation(platform("io.ktor:ktor-bom:1.6.0"))
     implementation("io.ktor", "ktor-server-core")
     implementation("io.ktor", "ktor-auth")
     implementation("io.ktor", "ktor-locations")

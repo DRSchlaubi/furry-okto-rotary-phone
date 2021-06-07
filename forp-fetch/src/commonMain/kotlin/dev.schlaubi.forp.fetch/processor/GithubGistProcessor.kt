@@ -15,8 +15,7 @@ import kotlinx.serialization.Serializable
  *
  * @param client a [HttpClient] with [JsonFeature] added to communicate with the Github API
  */
-public class GithubGistProcessor(private val client: HttpClient) :
-    MultiInputProcessor<StringInput, Gist> {
+public class GithubGistProcessor(private val client: HttpClient) : MultiInputProcessor<StringInput, Gist> {
 
     init {
         require(client.feature(JsonFeature) != null) { "JsonFeature was not installed to HttpClient" }

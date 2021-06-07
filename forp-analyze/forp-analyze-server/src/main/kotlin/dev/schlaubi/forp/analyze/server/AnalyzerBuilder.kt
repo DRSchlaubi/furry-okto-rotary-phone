@@ -61,5 +61,11 @@ fun Config.buildAnalyzer(): StackTraceAnalyzer = stackTraceAnalyzer {
                 McLogsProcessor(it)
             }
         }
+
+        if (inputs.pastegg) {
+            addHttpFetcher {
+                PasteGGProcessor(it)
+            }
+        }
     }
 }

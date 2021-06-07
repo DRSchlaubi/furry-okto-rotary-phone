@@ -7,7 +7,7 @@ plugins {
 apply(from = "../../publishing.gradle.kts")
 
 group = "dev.schlaubi.forp"
-version = "1.0-SNAPSHOT"
+version = "1.1-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -20,7 +20,6 @@ kotlin {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "11"
-                useIR = true
             }
         }
     }
@@ -41,7 +40,7 @@ kotlin {
 
         commonMain {
             dependencies {
-                implementation(project.dependencies.platform("io.ktor:ktor-bom:1.5.2"))
+                implementation(project.dependencies.platform("io.ktor:ktor-bom:1.6.0"))
                 implementation("io.ktor:ktor-client-core")
                 implementation("io.ktor:ktor-client-serialization")
                 implementation("io.github.microutils:kotlin-logging:1.12.5")

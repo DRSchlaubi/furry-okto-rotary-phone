@@ -1,5 +1,5 @@
 plugins {
-    kotlin("multiplatform") version "1.5.0" apply false
+    kotlin("multiplatform") version "1.5.10" apply false
     id("org.jetbrains.dokka") version "1.4.30"
     id("org.ajoberstar.git-publish") version "2.1.3"
     signing
@@ -69,7 +69,6 @@ subprojects {
         withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
             kotlinOptions {
                 jvmTarget = "11"
-                useIR = true
                 freeCompilerArgs = freeCompilerArgs +
                         "-Xopt-in=dev.schlaubi.forp.core.annotation.ForpInternals"
             }

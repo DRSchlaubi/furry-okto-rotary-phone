@@ -21,6 +21,7 @@ class Config(val config: Konfig) {
         val mclogs by config.property(Spec.Input.mclogs)
         val hastebinUrls by config.property(Spec.Input.hastebinUrls)
         val images by config.property(Spec.Input.images)
+        val pastegg by config.property(Spec.Input.pastegg)
     }
 
     inner class Auth {
