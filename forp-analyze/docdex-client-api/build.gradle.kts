@@ -1,6 +1,6 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization") version "1.4.32"
+    kotlin("plugin.serialization")
 }
 
 apply(from = "../../publishing.gradle.kts")
@@ -17,12 +17,11 @@ kotlin {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "11"
-                useIR = true
             }
         }
     }
 
-    js(LEGACY) {
+    js(BOTH) {
         nodejs()
     }
 
@@ -35,7 +34,7 @@ kotlin {
 
         commonMain {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
                 implementation(project(":forp-analyze:forp-analyze-api"))
             }
         }

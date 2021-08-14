@@ -1,6 +1,6 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization") version "1.4.31"
+    kotlin("plugin.serialization")
     id("org.jetbrains.dokka")
 }
 
@@ -20,12 +20,11 @@ kotlin {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "11"
-                useIR = true
             }
         }
     }
 
-    js(LEGACY) {
+    js(BOTH) {
         nodejs()
     }
 
@@ -40,7 +39,7 @@ kotlin {
             }
 
             dependencies {
-                api(project.dependencies.platform("io.ktor:ktor-bom:1.5.4"))
+                api(project.dependencies.platform("io.ktor:ktor-bom:1.6.2"))
             }
         }
 
@@ -49,7 +48,7 @@ kotlin {
                 api(project(":forp-find"))
                 api("io.ktor:ktor-io")
                 api("io.ktor:ktor-client-core")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
                 api("io.ktor:ktor-client-serialization")
             }
         }
@@ -60,8 +59,8 @@ kotlin {
             }
 
             dependencies {
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.4.3")
-                implementation(project.dependencies.platform("com.google.cloud:libraries-bom:20.1.0"))
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.5.1")
+                implementation(project.dependencies.platform("com.google.cloud:libraries-bom:20.9.0"))
                 implementation("com.google.cloud:google-cloud-vision")
                 implementation("io.ktor:ktor-client-okhttp")
             }

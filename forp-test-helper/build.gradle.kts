@@ -14,12 +14,11 @@ kotlin {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "11"
-                useIR = true
             }
         }
     }
 
-    js(LEGACY) {
+    js(BOTH) {
         nodejs()
     }
 

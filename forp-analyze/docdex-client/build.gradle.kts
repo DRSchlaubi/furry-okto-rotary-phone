@@ -1,6 +1,6 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization") version "1.4.32"
+    kotlin("plugin.serialization")
     id("org.jetbrains.dokka")
 }
 
@@ -20,12 +20,11 @@ kotlin {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "11"
-                useIR = true
             }
         }
     }
 
-    js(LEGACY) {
+    js(BOTH) {
         nodejs()
     }
 
@@ -37,13 +36,12 @@ kotlin {
         }
         commonMain {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
-                implementation(project.dependencies.platform("io.ktor:ktor-bom:1.5.4"))
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
+                implementation(project.dependencies.platform("io.ktor:ktor-bom:1.6.2"))
                 implementation("io.ktor:ktor-client-core")
                 implementation("io.ktor:ktor-client-serialization")
 
-                implementation("io.github.microutils:kotlin-logging:1.12.5")
-                implementation("io.github.microutils:kotlin-logging-common:1.12.5")
+                implementation("io.github.microutils:kotlin-logging:2.0.10")
 
                 api(project(":forp-analyze:forp-analyze-api"))
                 api(project(":forp-analyze:docdex-client-api"))
@@ -64,7 +62,6 @@ kotlin {
         jsMain {
             dependencies {
                 implementation("io.ktor:ktor-client-js")
-                implementation("io.github.microutils:kotlin-logging-js:1.12.5")
             }
         }
     }

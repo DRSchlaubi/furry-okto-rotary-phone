@@ -18,12 +18,11 @@ kotlin {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "11"
-                useIR = true
             }
         }
     }
 
-    js(LEGACY) {
+    js(BOTH) {
         nodejs()
     }
 
@@ -57,7 +56,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-junit5"))
-                runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+                runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
             }
         }
 

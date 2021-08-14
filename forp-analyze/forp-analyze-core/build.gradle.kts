@@ -19,12 +19,11 @@ kotlin {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "11"
-                useIR = true
             }
         }
     }
 
-    js(LEGACY) {
+    js(BOTH) {
         nodejs()
     }
 
@@ -40,16 +39,14 @@ kotlin {
         commonMain {
             dependencies {
                 api(project(":forp-analyze:forp-analyze-api"))
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.2.0")
-                implementation("io.github.microutils:kotlin-logging:1.12.5")
-                implementation("io.github.microutils:kotlin-logging-common:1.12.5")
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.2.1")
+                implementation("io.github.microutils:kotlin-logging:2.0.10")
             }
         }
 
         jsMain {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-nodejs:0.0.7")
-                implementation("io.github.microutils:kotlin-logging-js:1.12.5")
             }
         }
 
@@ -64,7 +61,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-junit5"))
-                runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+                runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
             }
         }
 

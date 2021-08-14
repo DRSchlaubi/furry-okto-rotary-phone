@@ -7,7 +7,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.strumenta.antlr-kotlin", "antlr-kotlin-gradle-plugin", "0951069063")
+        classpath("com.strumenta.antlr-kotlin", "antlr-kotlin-gradle-plugin", "6304d5c1c4")
     }
 }
 
@@ -32,7 +32,7 @@ kotlin {
             }
         }
     }
-    
+
     jvm {
         compilations.all {
             kotlinOptions {
@@ -55,7 +55,7 @@ kotlin {
         val commonAntlr by creating {
             dependencies {
                 api(kotlin("stdlib-common"))
-                api("com.strumenta.antlr-kotlin:antlr-kotlin-runtime:0951069063")
+                api("com.strumenta.antlr-kotlin:antlr-kotlin-runtime:6304d5c1c4")
             }
 
             kotlin.srcDir("build/generated-src/commonAntlr/kotlin")

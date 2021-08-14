@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="forp-find-jvm-1.0-SNAPSHOT">
-    <output-path>D:\Users\micha\IdeaProjects\fopr\forp-find\build\libs</output-path>
-    <root id="archive" name="forp-find-jvm-1.0-SNAPSHOT.jar">
-      <element id="module-output" name="forp.forp-find.jvmMain" />
-    </root>
-  </artifact>
-</component>

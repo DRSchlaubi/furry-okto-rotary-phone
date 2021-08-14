@@ -7,19 +7,18 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    jcenter()
     maven("https://jitpack.io")
 }
 
 dependencies {
     implementation(project(":forp-fetch"))
 
-    implementation(platform("com.google.cloud:libraries-bom:19.2.1"))
+    implementation(platform("com.google.cloud:libraries-bom:20.9.0"))
     implementation("com.google.cloud", "google-cloud-vision")
     implementation("org.slf4j", "slf4j-simple", "1.7.30")
 }
 
-configure<JavaPluginConvention> {
+java {
     @Suppress("UnstableApiUsage")
-    sourceCompatibility = JavaVersion.VERSION_15
+    sourceCompatibility = JavaVersion.VERSION_16
 }

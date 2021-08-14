@@ -1,7 +1,8 @@
 plugins {
-    kotlin("multiplatform") version "1.5.10" apply false
-    id("org.jetbrains.dokka") version "1.4.30"
-    id("org.ajoberstar.git-publish") version "2.1.3"
+    kotlin("multiplatform") version "1.5.21" apply false
+    kotlin("plugin.serialization") version "1.5.21" apply false
+    id("org.jetbrains.dokka") version "1.5.0"
+    id("org.ajoberstar.git-publish") version "3.0.0"
     signing
     `maven-publish`
 }
@@ -21,18 +22,8 @@ tasks {
         outputDirectory.set(rootProject.file("docs"))
     }
 
-    val docs = task<Copy>("createDocsIndex") {
-        dependsOn(dokkaHtmlMultiModule)
-        val outputDirectory = dokkaHtmlMultiModule.get().outputDirectory.get()
-        from(outputDirectory, rootProject.projectDir)
-        include("-modules.html", "CNAME")
-        into(outputDirectory)
-
-        rename("-modules.html", "index.html")
-    }
-
     gitPublishPush {
-        dependsOn(docs)
+        dependsOn(dokkaHtmlMultiModule)
     }
 }
 

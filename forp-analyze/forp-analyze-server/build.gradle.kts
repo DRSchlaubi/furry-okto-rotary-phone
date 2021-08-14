@@ -1,11 +1,11 @@
 plugins {
     application
     kotlin("jvm")
-    kotlin("plugin.serialization") version "1.4.32"
+    kotlin("plugin.serialization")
 }
 
 group = "dev.schlaubi.forp"
-version = "0.0.1"
+version = "0.0.2"
 
 
 repositories {
@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("io.ktor:ktor-bom:1.6.0"))
+    implementation(platform("io.ktor:ktor-bom:1.6.2"))
     implementation("io.ktor", "ktor-server-core")
     implementation("io.ktor", "ktor-auth")
     implementation("io.ktor", "ktor-locations")
@@ -23,16 +23,16 @@ dependencies {
     implementation("io.ktor", "ktor-websockets")
     implementation("io.ktor", "ktor-server-cio")
     implementation("ch.qos.logback", "logback-classic", "1.2.3")
-    implementation("io.github.microutils", "kotlin-logging", "1.12.5")
+    implementation("io.github.microutils", "kotlin-logging", "2.0.10")
 
     implementation("com.github.uchuhimo.konf", "konf-toml", "master-SNAPSHOT")
-    implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", "2.12.+")
+    implementation("com.fasterxml.jackson.module", "jackson-module-kotlin", "2.13.+")
 
     implementation(project(":forp-analyze:docdex-client"))
     implementation(project(":forp-analyze:forp-analyze-remote-api"))
     implementation(project(":forp-analyze:forp-analyze-core"))
 
-    implementation(platform("com.google.cloud:libraries-bom:19.2.1"))
+    implementation(platform("com.google.cloud:libraries-bom:20.9.0"))
     implementation("com.google.cloud", "google-cloud-vision")
 
     testImplementation("io.ktor", "ktor-server-tests")

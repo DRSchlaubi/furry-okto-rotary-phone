@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="forp-analyze-remote-api-jvm-1.0-SNAPSHOT">
-    <output-path>D:\Users\micha\IdeaProjects\fopr\forp-analyze\forp-analyze-remote-api\build\libs</output-path>
-    <root id="archive" name="forp-analyze-remote-api-jvm-1.0-SNAPSHOT.jar">
-      <element id="module-output" name="forp.forp-analyze.forp-analyze-remote-api.jvmMain" />
-    </root>
-  </artifact>
-</component>

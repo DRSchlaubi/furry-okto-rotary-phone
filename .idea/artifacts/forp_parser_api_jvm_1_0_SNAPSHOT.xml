@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="forp-parser-api-jvm-1.0-SNAPSHOT">
-    <output-path>D:\Users\micha\IdeaProjects\fopr\forp-parser-api\build\libs</output-path>
-    <root id="archive" name="forp-parser-api-jvm-1.0-SNAPSHOT.jar">
-      <element id="module-output" name="forp.forp-parser-api.jvmMain" />
-    </root>
-  </artifact>
-</component>

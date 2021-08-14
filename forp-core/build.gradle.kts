@@ -1,7 +1,6 @@
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.dokka")
-
 }
 
 apply(from = "../publishing.gradle.kts")
@@ -19,13 +18,12 @@ kotlin {
         compilations.all {
             kotlinOptions {
                 freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
-                useIR = true
                 jvmTarget = "11"
             }
         }
     }
 
-    js(LEGACY) {
+    js(BOTH) {
         nodejs()
     }
 
@@ -63,7 +61,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-junit5"))
-                runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+                runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
             }
         }
 
