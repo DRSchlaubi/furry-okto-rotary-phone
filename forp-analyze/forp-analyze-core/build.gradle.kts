@@ -45,6 +45,12 @@ kotlin {
         }
 
         jsMain {
+            repositories {
+                // See https://github.com/Kotlin/kotlinx-nodejs/issues/16
+                @Suppress("DEPRECATION")
+                jcenter()
+            }
+
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-nodejs:0.0.7")
             }

@@ -40,7 +40,7 @@ kotlin {
             }
         }
     }
-    js(LEGACY) {
+    js(BOTH) {
         nodejs()
     }
 

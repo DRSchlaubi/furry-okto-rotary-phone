@@ -60,6 +60,12 @@ kotlin {
         }
 
         jsMain {
+            repositories {
+                // See https://github.com/Kotlin/kotlinx-nodejs/issues/16
+                @Suppress("DEPRECATION")
+                jcenter()
+            }
+            
             dependencies {
                 implementation("io.ktor:ktor-client-js")
             }

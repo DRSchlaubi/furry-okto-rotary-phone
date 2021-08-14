@@ -7,8 +7,9 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.http.cio.websocket.*
 import io.ktor.network.sockets.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.serialization.decodeFromString
 import mu.KotlinLogging
 
@@ -20,12 +21,6 @@ internal class WebsocketClient(private val resources: RestResources) {
         MutableSharedFlow(extraBufferCapacity = Int.MAX_VALUE)
     val events: SharedFlow<RemoteEvent> = _events.asSharedFlow()
     private lateinit var session: DefaultClientWebSocketSession
-
-    init {
-        events.onEach {
-            println(it)
-        }.launchIn(GlobalScope)
-    }
 
     internal suspend fun connect(resume: Boolean = false) {
         session = try {
