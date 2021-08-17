@@ -59,9 +59,7 @@ internal class ConversationImpl(
         val exceptions = (exception.children.map { it.exception } + exception.exception)
             .distinct()
         exceptions.forEach {
-            val doc = analyzer.javadocs.findDoc(
-                exception.exception
-            ) as? DocumentedClassObject
+            val doc = analyzer.javadocs.findDoc(it) as? DocumentedClassObject
 
             if (doc == null) {
                 LOG.debug { "No doc found for $it" }
